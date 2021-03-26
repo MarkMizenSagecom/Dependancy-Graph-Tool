@@ -1,4 +1,60 @@
+import { useEffect, useState } from "react";
+import DraggableGroup from "./Tree/DraggableGroup";
+import styled from "styled-components";
+
+import useViewport from "../../hooks/useViewport";
+
+import TreeContents from "./Tree/TreeContents";
+import Button from "carbon-react/lib/components/button";
+import { useHistory } from "react-router";
+
+const TreeViewWrap = styled.div`
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+`;
+
+const TreeViewSVG = styled.svg`
+  position: absolute;
+  left: 0;
+  top: 0;
+`;
+
 function TreeView() {
-  return <div>Tree view</div>;
+  const viewport = useViewport();
+  const history = useHistory();
+  const [svgProps, setSvgProps] = useState({
+    height: 300,
+    width: 600,
+    viewbox: `0 0 600 300`,
+  });
+
+  useEffect(() => {
+    const { width, height } = viewport;
+    setSvgProps({ width, height, viewbox: `0 0 ${width} ${height}` });
+  }, [viewport, setSvgProps]);
+
+  return (
+    <TreeViewWrap>
+      <TreeViewSVG
+        preserveAspectRatio="none"
+        xmlns="http://www.w3.org/2000/svg"
+        {...svgProps}
+      >
+        <DraggableGroup>
+          <TreeContents />
+        </DraggableGroup>
+      </TreeViewSVG>
+      <div
+        style={{
+          zIndex: 10,
+          position: "relative",
+        }}
+      >
+        <Button onClick={() => history.push("/")}>Editor</Button>
+      </div>
+      {/* <pre>{JSON.stringify(items, null, 2)}</pre> */}
+    </TreeViewWrap>
+  );
 }
 export default TreeView;

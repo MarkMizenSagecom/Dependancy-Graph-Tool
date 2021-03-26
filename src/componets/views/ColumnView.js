@@ -1,5 +1,5 @@
-import { useRef } from "react";
-import { useSelector } from "react-redux";
+import { useCallback, useRef } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import { ClickAndDragProvider } from "../../context/clickAndDrag";
 import { RefsProvider } from "../../context/refs";
@@ -9,6 +9,7 @@ import { getColumns } from "../../redux/dependancies/dependanciesSlice";
 import AddNewColumn from "../atoms/AddNewColumn";
 import Connections from "../atoms/Connections";
 import Column from "../containers/Column";
+import { updateScrollLeft } from "../../redux/connections/connectionsSlice";
 
 const ColumnViewWrap = styled.div`
   min-height: 100vh;
@@ -36,21 +37,33 @@ const Provders = ({ children }) => (
 
 function ColumnView() {
   const columns = useSelector(getColumns);
+  const dispatch = useDispatch();
+
   const scrollable = useRef(null);
+
+  const handleScroll = useCallback(
+    (ev) => {
+      dispatch({
+        type: updateScrollLeft.type,
+        payload: { value: ev.target.scrollLeft },
+      });
+    },
+    [dispatch]
+  );
 
   return (
     <div style={{ position: "relative" }}>
       <Provders>
+        <Connections />
         <ColumnViewWrap>
           {/* <ColumnViewOptions /> */}
-          <ColumnsScrollableWrap ref={scrollable}>
+          <ColumnsScrollableWrap ref={scrollable} onScroll={handleScroll}>
             {Object.keys(columns).map((colId) => (
               <Column key={colId} colId={colId} />
             ))}
             <AddNewColumn />
           </ColumnsScrollableWrap>
         </ColumnViewWrap>
-        <Connections />
       </Provders>
     </div>
   );

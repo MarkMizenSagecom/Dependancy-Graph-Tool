@@ -27,6 +27,7 @@ import {
   updateItem,
 } from "../../redux/dependancies/dependanciesSlice";
 import { Linking } from "../../context/linking";
+import { useHistory } from "react-router";
 
 const ColumnItemEle = styled.div`
   position: relative;
@@ -49,7 +50,7 @@ const ItemButtons = styled.div`
 
 const ReadOnlyView = styled.div`
   position: relative;
-  padding-left: 0.5rem;
+  padding-left: 1rem;
 `;
 
 function ColumnItem({ itemId }) {
@@ -57,6 +58,8 @@ function ColumnItem({ itemId }) {
 
   const items = useSelector(getItems);
   const dispatch = useDispatch();
+
+  const history = useHistory();
 
   const { addRef, removeRef } = useContext(Refs);
 
@@ -67,12 +70,16 @@ function ColumnItem({ itemId }) {
   const [edittable, setEdittable] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
 
-  const startEditing = useCallback(() => {
-    setEdittable(true);
-    requestAnimationFrame(() => {
-      ref.current?.querySelector("input")?.focus();
-    });
-  }, [setEdittable, ref]);
+  const startEditing = useCallback(
+    (ev) => {
+      ev.preventDefault();
+      setEdittable(true);
+      requestAnimationFrame(() => {
+        ref.current?.querySelector("input")?.focus();
+      });
+    },
+    [setEdittable, ref]
+  );
 
   const doneEditing = useCallback(() => {
     setEdittable(false);
@@ -101,6 +108,29 @@ function ColumnItem({ itemId }) {
   }, [addRef, removeRef, ref, itemId]);
 
   const { linking, startLinking, doneLinking, addLink } = useContext(Linking);
+
+  const viewTree = useCallback(
+    (ev) => {
+      ev.preventDefault();
+      history.push(`/tree/${itemId}`);
+    },
+    [history, itemId]
+  );
+
+  useEffect(() => {
+    if (linking !== itemId) {
+      return;
+    }
+    const exitlinking = (ev) => {
+      if (ev.key === "Escape") {
+        doneLinking();
+      }
+    };
+    window.addEventListener("keydown", exitlinking);
+    return () => {
+      window.removeEventListener("keydown", exitlinking);
+    };
+  }, [itemId, linking, doneLinking]);
 
   return (
     <ColumnItemEle
@@ -182,6 +212,7 @@ function ColumnItem({ itemId }) {
               >
                 <Icon fontSize="medium" type="drag_vertical" />
               </div>
+
               <Typography variant="h3" mb={1}>
                 {item.title ?? "\u00A0"}
               </Typography>
@@ -190,17 +221,34 @@ function ColumnItem({ itemId }) {
               )}
               {item.status && <Typography mb={1}>{item.status}</Typography>}
               <ItemButtons>
-                <Button size="small" onClick={startEditing}>
-                  Edit
-                </Button>
                 {linking === itemId ? (
-                  <Button size="small" primary onClick={doneLinking}>
+                  <Button size="small" variant="primary" onClick={doneLinking}>
                     Done
                   </Button>
                 ) : (
-                  <Button size="small" onClick={() => startLinking(itemId)}>
-                    Link
-                  </Button>
+                  <>
+                    <Button
+                      size="small"
+                      onClick={startEditing}
+                      disabled={!!linking}
+                    >
+                      Edit
+                    </Button>
+                    <Button
+                      size="small"
+                      onClick={() => startLinking(itemId)}
+                      disabled={!!linking}
+                    >
+                      Link
+                    </Button>
+                    <Button
+                      size="small"
+                      onClick={viewTree}
+                      disabled={!!linking}
+                    >
+                      Tree
+                    </Button>
+                  </>
                 )}
               </ItemButtons>
             </ReadOnlyView>

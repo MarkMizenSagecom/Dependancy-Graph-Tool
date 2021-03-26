@@ -13,7 +13,7 @@ function App() {
     <div className="App">
       <Router>
         <Switch>
-          <Route path="/tree">
+          <Route path="/tree/:itemId">
             <TreeView />
           </Route>
           <Route path="/">

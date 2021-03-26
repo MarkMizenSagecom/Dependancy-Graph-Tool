@@ -6,6 +6,7 @@ import useViewport from "../../hooks/useViewport";
 import { useSelector } from "react-redux";
 import { getConnections } from "../../redux/dependancies/dependanciesSlice";
 import styled from "styled-components";
+import { getScrollLeft } from "../../redux/connections/connectionsSlice";
 
 const ConnectionsWrap = styled.div`
   pointer-events: none;
@@ -24,6 +25,7 @@ const Svg = styled.svg`
 
 function Connections() {
   const connections = useSelector(getConnections);
+  const scrollLeft = useSelector(getScrollLeft);
 
   const refsContext = useContext(Refs);
 
@@ -40,36 +42,71 @@ function Connections() {
   const lines = useMemo(() => {
     const { scrollTop } = document.documentElement;
 
-    // const filter = itemsContext.connectionSrc
-    //   ? ({ from, to }) => {
-    //       return (
-    //         itemsContext.connectionSrc === from ||
-    //         itemsContext.connectionSrc === to
-    //       );
-    //     }
-    //   : () => true;
+    return connections
+      ?.map(({ from, to }) => {
+        try {
+          const fromRef = refsContext.refs[from];
+          const toRef = refsContext.refs[to];
 
-    return connections?.map(({ from, to }) => {
-      try {
-        const fromRef = refsContext.refs[from]?.current;
-        const toRef = refsContext.refs[to]?.current;
+          const fromClientRect = fromRef.getBoundingClientRect();
+          const xStart = fromClientRect.right;
+          const yStart =
+            fromClientRect.top + scrollTop + fromClientRect.height / 2;
 
-        const fromClientRect = fromRef.getBoundingClientRect();
-        const x1 = fromClientRect.right;
-        const y1 = fromClientRect.top + scrollTop + fromClientRect.height / 2;
+          const toClientRect = toRef.getBoundingClientRect();
+          let xEnd = toClientRect.right;
+          let yEnd = toClientRect.top + scrollTop + toClientRect.height / 2;
 
-        const toClientRect = toRef.getBoundingClientRect();
-        const x2 =
-          toClientRect.right === y1 ? toClientRect.right : toClientRect.left;
-        const y2 = toClientRect.top + scrollTop + toClientRect.height / 2;
+          if (xStart === xEnd || Math.abs(xStart - xEnd) < 1) {
+            // modifier is negative if to is below from
+            const modifier = yStart > yEnd ? 1 : -1;
+            yEnd = yEnd + (modifier * toClientRect.height) / 4;
 
-        return `M ${x1} ${y1} , L ${x2}, ${y2}`;
-      } catch (err) {
-        console.log(err);
-      }
-      return null;
-    });
-  }, [viewport, connections, refsContext]);
+            return {
+              line: `M ${xStart} ${yStart} 
+          C ${xStart + 40} ${yStart}, 
+            ${xEnd + 40} ${yEnd}, 
+            ${xEnd} ${yEnd}`,
+              start: { x: xStart, y: yStart },
+            };
+          } else {
+            xEnd = toClientRect.left;
+
+            return {
+              line: `M ${xStart} ${yStart} 
+            C ${xStart + 40} ${yStart}, 
+              ${xEnd - 40} ${yEnd}, 
+              ${xEnd} ${yEnd}`,
+              start: { x: xStart, y: yStart },
+            };
+          }
+
+          // return `M ${x1} ${y1} , L ${x2}, ${y2}`;
+          // return `M ${x1} ${y1} C ${x1} ${y1}, ${x1 + 20} ${y1}, ${x2} ${y2}`;
+
+          // return `M ${xStart} ${yStart} C ${xStart} ${yStart}, ${xStart + 50} ${
+          //   yStart + 50
+          // }, ${xEnd} ${yEnd}`;
+        } catch (err) {
+          console.log(err);
+        }
+        return null;
+      })
+      ?.filter((line) => !!line)
+      .map(({ start, line }, index) => {
+        return (
+          <g key={index}>
+            <path
+              d={line}
+              strokeWidth="2"
+              fill="transparent"
+              stroke="rgba(0, 0, 0, 0.4)"
+            ></path>
+            <circle cx={start.x} cy={start.y} r="4" fill="rgba(0, 0, 0, 0.4)" />
+          </g>
+        );
+      });
+  }, [viewport, scrollLeft, connections, refsContext]);
 
   useEffect(() => {
     if (!viewport || !ref?.current) {
@@ -84,7 +121,6 @@ function Connections() {
 
   return (
     <ConnectionsWrap ref={ref}>
-      <pre>{JSON.stringify(connections, null, 2)}</pre>
       <Svg
         preserveAspectRatio="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -92,19 +128,7 @@ function Connections() {
         width={svgProps.width}
         viewbox={svgProps.viewBox}
       >
-        {lines
-          ?.filter((line) => !!line)
-          .map((lineDef, index) => {
-            return (
-              <path
-                d={lineDef}
-                key={index}
-                strokeWidth="2px"
-                fill="transparent"
-                stroke="rgb(33, 133, 208)"
-              ></path>
-            );
-          })}
+        {lines}
       </Svg>
     </ConnectionsWrap>
   );
