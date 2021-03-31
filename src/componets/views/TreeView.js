@@ -7,6 +7,7 @@ import useViewport from "../../hooks/useViewport";
 import TreeContents from "./Tree/TreeContents";
 import Button from "carbon-react/lib/components/button";
 import { useHistory } from "react-router";
+import { TreeContextProvider } from "./Tree/TreeContext";
 
 const TreeViewWrap = styled.div`
   width: 100vw;
@@ -36,24 +37,25 @@ function TreeView() {
 
   return (
     <TreeViewWrap>
-      <TreeViewSVG
-        preserveAspectRatio="none"
-        xmlns="http://www.w3.org/2000/svg"
-        {...svgProps}
-      >
-        <DraggableGroup>
-          <TreeContents />
-        </DraggableGroup>
-      </TreeViewSVG>
-      <div
-        style={{
-          zIndex: 10,
-          position: "relative",
-        }}
-      >
-        <Button onClick={() => history.push("/")}>Editor</Button>
-      </div>
-      {/* <pre>{JSON.stringify(items, null, 2)}</pre> */}
+      <TreeContextProvider>
+        <TreeViewSVG
+          preserveAspectRatio="none"
+          xmlns="http://www.w3.org/2000/svg"
+          {...svgProps}
+        >
+          <DraggableGroup>
+            <TreeContents />
+          </DraggableGroup>
+        </TreeViewSVG>
+        <div
+          style={{
+            zIndex: 10,
+            position: "relative",
+          }}
+        >
+          <Button onClick={() => history.push("/")}>Editor</Button>
+        </div>
+      </TreeContextProvider>
     </TreeViewWrap>
   );
 }

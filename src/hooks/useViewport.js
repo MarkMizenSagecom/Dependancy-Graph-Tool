@@ -7,11 +7,12 @@ const useViewport = () => {
   });
 
   useEffect(() => {
-    const handleWindowResize = () =>
+    const handleWindowResize = () => {
       setViewport({
         width: window.innerWidth,
         height: window.innerHeight,
       });
+    };
     window.addEventListener("resize", handleWindowResize);
     return () => window.removeEventListener("resize", handleWindowResize);
   }, []);

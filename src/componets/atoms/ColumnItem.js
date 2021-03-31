@@ -6,28 +6,31 @@ import {
   useMemo,
   useEffect,
 } from "react";
+import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
+import styled from "styled-components";
 
 import Button from "carbon-react/lib/components/button";
 import Content from "carbon-react/lib/components/content";
 import Icon from "carbon-react/lib/components/icon";
-import Textbox from "carbon-react/lib/__experimental__/components/textbox";
 import Tile from "carbon-react/lib/components/tile";
-import Confirm from "carbon-react/lib/components/confirm";
 import Typography from "carbon-react/lib/components/typography";
-import { Select, Option } from "carbon-react/lib/components/select";
 
 import { Refs } from "../../context/refs";
 
-import styled from "styled-components";
-
 import {
   getItems,
-  removeItem,
-  updateItem,
+  addConnection,
 } from "../../redux/dependancies/dependanciesSlice";
-import { Linking } from "../../context/linking";
-import { useHistory } from "react-router";
+
+import {
+  startLinking,
+  doneLinking,
+  getIsLinking,
+  getLinkingSource,
+} from "../../redux/linking/linkingSlice";
+
+import NodeEditor from "./NodeEditor";
 
 const ColumnItemEle = styled.div`
   position: relative;
@@ -56,19 +59,24 @@ const ReadOnlyView = styled.div`
 function ColumnItem({ itemId }) {
   const ref = useRef(null);
 
-  const items = useSelector(getItems);
-  const dispatch = useDispatch();
+  const [edittable, setEdittable] = useState(false);
 
+  const dispatch = useDispatch();
   const history = useHistory();
+
+  const items = useSelector(getItems);
+  const linkingSource = useSelector(getLinkingSource);
+  const linking = useSelector(getIsLinking);
+
+  useEffect(() => {
+    console.log({ linkingSource, linking });
+  }, [linkingSource, linking]);
 
   const { addRef, removeRef } = useContext(Refs);
 
   const item = useMemo(() => {
     return items[itemId];
   }, [items, itemId]);
-
-  const [edittable, setEdittable] = useState(false);
-  const [confirmDelete, setConfirmDelete] = useState(false);
 
   const startEditing = useCallback(
     (ev) => {
@@ -85,19 +93,34 @@ function ColumnItem({ itemId }) {
     setEdittable(false);
   }, [setEdittable]);
 
-  const update = useCallback(
-    (key, val) => {
+  const viewTree = useCallback(
+    (ev) => {
+      ev.preventDefault();
+      history.push(`/tree/${itemId}`);
+    },
+    [history, itemId]
+  );
+
+  // Add a link
+  const addLink = useCallback(() => {
+    if (linking && linkingSource !== itemId) {
       dispatch({
-        type: updateItem.type,
-        payload: {
-          id: itemId,
-          update: {
-            [key]: val,
-          },
-        },
+        type: addConnection.type,
+        payload: { from: linkingSource, to: itemId },
+      });
+    }
+  }, [linking, linkingSource, dispatch, itemId]);
+
+  // Start linking
+  const startLinkingFromNode = useCallback(
+    (ev) => {
+      ev.preventDefault();
+      dispatch({
+        type: startLinking.type,
+        payload: { id: itemId },
       });
     },
-    [itemId, dispatch]
+    [dispatch, itemId]
   );
 
   useEffect(() => {
@@ -107,98 +130,27 @@ function ColumnItem({ itemId }) {
     };
   }, [addRef, removeRef, ref, itemId]);
 
-  const { linking, startLinking, doneLinking, addLink } = useContext(Linking);
-
-  const viewTree = useCallback(
-    (ev) => {
-      ev.preventDefault();
-      history.push(`/tree/${itemId}`);
-    },
-    [history, itemId]
-  );
-
   useEffect(() => {
     if (linking !== itemId) {
       return;
     }
     const exitlinking = (ev) => {
       if (ev.key === "Escape") {
-        doneLinking();
+        dispatch({ type: doneLinking.type });
       }
     };
     window.addEventListener("keydown", exitlinking);
     return () => {
       window.removeEventListener("keydown", exitlinking);
     };
-  }, [itemId, linking, doneLinking]);
+  }, [itemId, linking, dispatch]);
 
   return (
-    <ColumnItemEle
-      ref={ref}
-      onClick={() => {
-        if (linking && linking !== itemId) {
-          addLink(itemId);
-        }
-      }}
-      linking={!!linking}
-    >
+    <ColumnItemEle ref={ref} onClick={addLink} linking={!!linking}>
       <Tile orientation="vertical" pixelWidth={320}>
         <Content>
           {edittable ? (
-            <form
-              onSubmit={(ev) => {
-                ev.preventDefault();
-              }}
-            >
-              <Typography>
-                <Textbox
-                  labelInline
-                  label="Name"
-                  size="small"
-                  value={item.title}
-                  onChange={(ev) => {
-                    update("title", ev.target.value);
-                  }}
-                  required
-                />
-              </Typography>
-              <Typography>
-                <Textbox
-                  labelInline
-                  label="Description"
-                  value={item.description}
-                  size="small"
-                  onChange={(ev) => update("description", ev.target.value)}
-                />
-              </Typography>
-              <Typography>
-                <Select
-                  labelInline
-                  name="simple"
-                  size="small"
-                  label="Status"
-                  value={item.status}
-                  onChange={(ev) => {
-                    update("status", ev.target.value);
-                  }}
-                >
-                  <Option text="Blue" value="blue" />
-                </Select>
-              </Typography>
-              <ItemButtons>
-                <Button size="small" onClick={setConfirmDelete}>
-                  Delete
-                </Button>
-                <Button
-                  buttonType="primary"
-                  size="small"
-                  onClick={doneEditing}
-                  type="submit"
-                >
-                  Done
-                </Button>
-              </ItemButtons>
-            </form>
+            <NodeEditor {...{ itemId, item, doneEditing }} />
           ) : (
             <ReadOnlyView>
               <div
@@ -216,13 +168,20 @@ function ColumnItem({ itemId }) {
               <Typography variant="h3" mb={1}>
                 {item.title ?? "\u00A0"}
               </Typography>
+
               {item.description && (
                 <Typography mb={1}>{item.description}</Typography>
               )}
+
               {item.status && <Typography mb={1}>{item.status}</Typography>}
+
               <ItemButtons>
-                {linking === itemId ? (
-                  <Button size="small" variant="primary" onClick={doneLinking}>
+                {linkingSource === itemId ? (
+                  <Button
+                    size="small"
+                    variant="primary"
+                    onClick={() => dispatch({ type: doneLinking.type })}
+                  >
                     Done
                   </Button>
                 ) : (
@@ -236,7 +195,7 @@ function ColumnItem({ itemId }) {
                     </Button>
                     <Button
                       size="small"
-                      onClick={() => startLinking(itemId)}
+                      onClick={startLinkingFromNode}
                       disabled={!!linking}
                     >
                       Link
@@ -255,20 +214,6 @@ function ColumnItem({ itemId }) {
           )}
         </Content>
       </Tile>
-
-      <Confirm
-        title="Delete item"
-        open={confirmDelete}
-        onConfirm={() => {
-          setConfirmDelete(false);
-          requestAnimationFrame(() => {
-            dispatch({ type: removeItem.type, payload: { id: itemId } });
-          });
-        }}
-        onCancel={() => setConfirmDelete(false)}
-      >
-        Are you sure?
-      </Confirm>
     </ColumnItemEle>
   );
 }

@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import { ClickAndDragProvider } from "../../context/clickAndDrag";
 import { RefsProvider } from "../../context/refs";
-import { LinkingProvider } from "../../context/linking";
 import { getColumns } from "../../redux/dependancies/dependanciesSlice";
 
 import AddNewColumn from "../atoms/AddNewColumn";
@@ -28,11 +27,9 @@ const ColumnsScrollableWrap = styled.div`
 `;
 
 const Provders = ({ children }) => (
-  <LinkingProvider>
-    <ClickAndDragProvider>
-      <RefsProvider>{children}</RefsProvider>
-    </ClickAndDragProvider>
-  </LinkingProvider>
+  <ClickAndDragProvider>
+    <RefsProvider>{children}</RefsProvider>
+  </ClickAndDragProvider>
 );
 
 function ColumnView() {
@@ -56,7 +53,6 @@ function ColumnView() {
       <Provders>
         <Connections />
         <ColumnViewWrap>
-          {/* <ColumnViewOptions /> */}
           <ColumnsScrollableWrap ref={scrollable} onScroll={handleScroll}>
             {Object.keys(columns).map((colId) => (
               <Column key={colId} colId={colId} />

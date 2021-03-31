@@ -102,7 +102,7 @@ function Connections() {
               fill="transparent"
               stroke="rgba(0, 0, 0, 0.4)"
             ></path>
-            <circle cx={start.x} cy={start.y} r="4" fill="rgba(0, 0, 0, 0.4)" />
+            <circle cx={start.x} cy={start.y} r="4" fill="rgb(0, 0, 0)" />
           </g>
         );
       });
