@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import DraggableGroup from "./Tree/DraggableGroup";
+import DraggableGroup from "./DraggableGroup";
 import styled from "styled-components";
 
 import useViewport from "../../hooks/useViewport";
 
-import TreeContents from "./Tree/TreeContents";
+import TreeContents from "./TreeContents";
 import Button from "carbon-react/lib/components/button";
 import { useHistory } from "react-router";
-import { TreeContextProvider } from "./Tree/TreeContext";
+import { TreeContextProvider } from "./TreeContext";
 
 const TreeViewWrap = styled.div`
   width: 100vw;
@@ -53,7 +53,7 @@ function TreeView() {
             position: "relative",
           }}
         >
-          <Button onClick={() => history.push("/")}>Editor</Button>
+          <Button onClick={() => history.push("/columns")}>Editor</Button>
         </div>
       </TreeContextProvider>
     </TreeViewWrap>

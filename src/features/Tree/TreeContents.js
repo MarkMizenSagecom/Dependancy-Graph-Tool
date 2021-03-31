@@ -2,7 +2,7 @@ import TreeNode from "./TreeNode";
 import { useCallback, useContext, useMemo } from "react";
 import { TreeContext } from "./TreeContext";
 import { useSelector } from "react-redux";
-import { getItems } from "../../../redux/dependancies/dependanciesSlice";
+import { getItems } from "../../redux/dependancies/dependanciesSlice";
 import TreeArrows from "./TreeArrows";
 import { useHistory } from "react-router";
 

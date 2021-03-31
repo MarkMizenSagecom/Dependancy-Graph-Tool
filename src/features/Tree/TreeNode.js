@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import styled from "styled-components";
-import { getShowOtherRelations } from "../../../redux/options/optionsSlice";
+import { getShowOtherRelations } from "../../redux/options/optionsSlice";
 
 const NodeTitle = styled.text`
   font: normal 18px sans-serif;
@@ -113,7 +113,7 @@ function TreeNode({
           y={(position.y + 60).toString()}
         >
           {col}
-          {itemDetails.description}
+          {itemDetails?.description}
         </NodeDescription>
       </g>
 

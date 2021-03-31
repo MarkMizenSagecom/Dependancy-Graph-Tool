@@ -1,6 +1,6 @@
 import { useEffect, useContext, useMemo, useReducer } from "react";
 import { TreeContext } from "./TreeContext";
-import useViewport from "../../../hooks/useViewport";
+import useViewport from "../../hooks/useViewport";
 
 function reducer(state, { type, payload }) {
   switch (type) {

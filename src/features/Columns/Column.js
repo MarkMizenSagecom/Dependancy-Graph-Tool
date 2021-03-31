@@ -8,7 +8,7 @@ import {
   getColumns,
   updateColumn,
 } from "../../redux/dependancies/dependanciesSlice";
-import ColumnItem from "../atoms/ColumnItem";
+import ColumnItem from "./ColumnItem";
 
 const ColumnEle = styled.div`
   scroll-snap-align: start;
