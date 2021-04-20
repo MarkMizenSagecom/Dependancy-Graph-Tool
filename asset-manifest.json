@@ -5,12 +5,12 @@
     "functions.js": "/Dependancy-Graph-Tool/static/js/functions.22543a71.chunk.js",
     "functions.js.map": "/Dependancy-Graph-Tool/static/js/functions.22543a71.chunk.js.map",
     "main.css": "/Dependancy-Graph-Tool/static/css/main.a7cc181b.chunk.css",
-    "main.js": "/Dependancy-Graph-Tool/static/js/main.0524ccd7.chunk.js",
-    "main.js.map": "/Dependancy-Graph-Tool/static/js/main.0524ccd7.chunk.js.map",
+    "main.js": "/Dependancy-Graph-Tool/static/js/main.5dccc0eb.chunk.js",
+    "main.js.map": "/Dependancy-Graph-Tool/static/js/main.5dccc0eb.chunk.js.map",
     "runtime-main.js": "/Dependancy-Graph-Tool/static/js/runtime-main.4dbaf064.js",
     "runtime-main.js.map": "/Dependancy-Graph-Tool/static/js/runtime-main.4dbaf064.js.map",
-    "static/js/4.69974ed6.chunk.js": "/Dependancy-Graph-Tool/static/js/4.69974ed6.chunk.js",
-    "static/js/4.69974ed6.chunk.js.map": "/Dependancy-Graph-Tool/static/js/4.69974ed6.chunk.js.map",
+    "static/js/4.b85207c1.chunk.js": "/Dependancy-Graph-Tool/static/js/4.b85207c1.chunk.js",
+    "static/js/4.b85207c1.chunk.js.map": "/Dependancy-Graph-Tool/static/js/4.b85207c1.chunk.js.map",
     "static/js/5.201adfd3.chunk.js": "/Dependancy-Graph-Tool/static/js/5.201adfd3.chunk.js",
     "static/js/5.201adfd3.chunk.js.map": "/Dependancy-Graph-Tool/static/js/5.201adfd3.chunk.js.map",
     "static/js/6.72ab42d5.chunk.js": "/Dependancy-Graph-Tool/static/js/6.72ab42d5.chunk.js",
@@ -30,7 +30,7 @@
     "static/js/0.dbcec63a.chunk.js.LICENSE.txt": "/Dependancy-Graph-Tool/static/js/0.dbcec63a.chunk.js.LICENSE.txt",
     "static/js/10.3c28a86f.chunk.js.LICENSE.txt": "/Dependancy-Graph-Tool/static/js/10.3c28a86f.chunk.js.LICENSE.txt",
     "static/js/11.6621b9e6.chunk.js.LICENSE.txt": "/Dependancy-Graph-Tool/static/js/11.6621b9e6.chunk.js.LICENSE.txt",
-    "static/js/4.69974ed6.chunk.js.LICENSE.txt": "/Dependancy-Graph-Tool/static/js/4.69974ed6.chunk.js.LICENSE.txt",
+    "static/js/4.b85207c1.chunk.js.LICENSE.txt": "/Dependancy-Graph-Tool/static/js/4.b85207c1.chunk.js.LICENSE.txt",
     "static/js/6.72ab42d5.chunk.js.LICENSE.txt": "/Dependancy-Graph-Tool/static/js/6.72ab42d5.chunk.js.LICENSE.txt",
     "static/js/7.6ab93e70.chunk.js.LICENSE.txt": "/Dependancy-Graph-Tool/static/js/7.6ab93e70.chunk.js.LICENSE.txt",
     "static/js/8.c33e26f2.chunk.js.LICENSE.txt": "/Dependancy-Graph-Tool/static/js/8.c33e26f2.chunk.js.LICENSE.txt",
@@ -39,8 +39,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.4dbaf064.js",
-    "static/js/4.69974ed6.chunk.js",
+    "static/js/4.b85207c1.chunk.js",
     "static/css/main.a7cc181b.chunk.css",
-    "static/js/main.0524ccd7.chunk.js"
+    "static/js/main.5dccc0eb.chunk.js"
   ]
 }
