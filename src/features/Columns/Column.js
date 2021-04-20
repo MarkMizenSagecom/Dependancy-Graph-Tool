@@ -44,6 +44,7 @@ const ColumnTitleText = styled.h2`
   font-weight: 600;
   padding: 0.5rem;
   border-bottom: 2px solid transparent;
+  margin: 0;
 `;
 
 const ColumnTitleEditable = styled.input`
@@ -89,42 +90,43 @@ function Column({ justify = "flex-start", colId }) {
         {readonly ? (
           <ColumnTitleText>{column?.title}</ColumnTitleText>
         ) : (
-          <EditableWrap>
-            <ColumnTitleEditable
-              ref={titleInput}
-              value={column?.title}
-              type="text"
-              onChange={(ev) => {
+          <>
+            <EditableWrap>
+              <ColumnTitleEditable
+                ref={titleInput}
+                value={column?.title}
+                type="text"
+                onChange={(ev) => {
+                  dispatch({
+                    type: updateColumn.type,
+                    payload: { id: colId, title: ev.target.value },
+                  });
+                }}
+              />
+              <EditableIcon
+                onClick={() => {
+                  titleInput.current.focus();
+                }}
+              >
+                <Icon type="edit" />
+              </EditableIcon>
+            </EditableWrap>
+            <IconButton
+              type="button"
+              onAction={(ev) => {
+                ev.preventDefault();
                 dispatch({
-                  type: updateColumn.type,
-                  payload: { id: colId, title: ev.target.value },
+                  type: addItem.type,
+                  payload: {
+                    column: colId,
+                  },
                 });
               }}
-            />
-            <EditableIcon
-              onClick={() => {
-                titleInput.current.focus();
-              }}
             >
-              <Icon type="edit" />
-            </EditableIcon>
-          </EditableWrap>
+              <Icon bgTheme="info" bgSize="large" type="plus" />
+            </IconButton>
+          </>
         )}
-
-        <IconButton
-          type="button"
-          onAction={(ev) => {
-            ev.preventDefault();
-            dispatch({
-              type: addItem.type,
-              payload: {
-                column: colId,
-              },
-            });
-          }}
-        >
-          <Icon bgTheme="info" bgSize="large" type="plus" />
-        </IconButton>
       </ColumnTitle>
 
       <ColumnVerticalList justify={justify}>

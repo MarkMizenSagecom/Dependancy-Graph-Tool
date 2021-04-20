@@ -21,17 +21,22 @@ const NodeBox = styled.rect`
   fill: #fff;
   stroke: #8099a4;
   stroke-width: 1;
-  filter: drop-shadow(0 3px 3px rgba(0,20,29,0.2)) drop-shadow(0 2px 4px rgba(0,20,29,0.15));
+  filter: 
+    drop-shadow(0 3px 3px rgba(0,20,29,0.2)) 
+    drop-shadow(0 2px 4px rgba(0,20,29,0.15));
   ${(props) =>
     props.root
-      ? "stroke-width: 2"
-      : `
-    &:hover {
+      ? `
       stroke-width: 2;
-      stroke: #008200;
-      cursor: pointer;
-    }
-  `}}
+      fill: rgb(242, 245, 246);
+      `
+      : `
+      &:hover {
+        stroke-width: 2;
+        stroke: #008200;
+        cursor: pointer;
+      }
+    `}}
 `;
 
 const OtherNodeLabel = ({ x, y, parentX, parentY, text }) => {

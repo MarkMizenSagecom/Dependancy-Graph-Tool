@@ -1,10 +1,13 @@
-import { Route, Link, useHistory } from "react-router-dom";
-import ComponentSearch from "./ComponentSearch";
-import SaveButton from "./SaveButton";
+import { Route, useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import Button from "carbon-react/lib/components/button";
-import { useDispatch } from "react-redux";
+
 import { addColumn } from "../redux/dependancies/dependanciesSlice";
+import { getReadOnly } from "../redux/settings/settingsSlice";
+
+import ComponentSearch from "./ComponentSearch";
+import SaveButton from "./SaveButton";
 
 const SidebarWrap = styled.div`
   width: 320px;
@@ -30,6 +33,7 @@ const Hr = styled.hr`
 function AppSidebar() {
   const history = useHistory();
   const dispatch = useDispatch();
+  const readonly = useSelector(getReadOnly);
   return (
     <SidebarWrap>
       <ComponentSearch />
@@ -46,15 +50,17 @@ function AppSidebar() {
           </Button>
         </Route>
         <Route exact path="/">
-          <Button
-            onClick={() => {
-              dispatch({ type: addColumn.toString() });
-            }}
-            fullWidth
-            iconType="plus"
-          >
-            Add New Column
-          </Button>
+          {!readonly && (
+            <Button
+              onClick={() => {
+                dispatch({ type: addColumn.toString() });
+              }}
+              fullWidth
+              iconType="plus"
+            >
+              Add New Column
+            </Button>
+          )}
         </Route>
         <SaveButton />
       </SidebarActions>

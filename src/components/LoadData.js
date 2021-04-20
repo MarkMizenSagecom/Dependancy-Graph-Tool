@@ -58,7 +58,7 @@ const saveData =
               "Content-Type": "application/json",
             },
             body: JSON.stringify(
-              connections.map((connection, index) => [index, connection])
+              Object.fromEntries(connections.map((connection, index) => [index, connection]))
             ),
           }),
         ]);

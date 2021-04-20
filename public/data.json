@@ -1,54 +1,217 @@
 {
   "items": {
     "item-0947408874185667": {
-      "title": "Name",
+      "title": "Spacial Markup",
       "description": "",
       "status": "unknown"
     },
     "item-8515090461252666": {
-      "title": "Name",
+      "title": "Fonts",
       "description": "",
       "status": "unknown"
     },
     "item-3440554479728085": {
-      "title": "test",
+      "title": "Colors",
       "description": "",
       "status": "unknown"
     },
-    "item-7503432517630574": {
-      "title": "Name",
+    "item-9870218546510371": {
+      "title": "Grid system",
       "description": "",
       "status": "unknown"
     },
-    "item-1517199789207337": {
-      "title": "Name",
+    "item-5413394689767400": {
+      "title": "Icons",
       "description": "",
       "status": "unknown"
     },
-    "item-1629604186476431": {
-      "title": "Name",
+    "item-2608125733640464": {
+      "title": "Detailed Icons",
+      "description": "",
+      "status": "unknown"
+    },
+    "item-1964129327926841": {
+      "title": "Illustration",
+      "description": "",
+      "status": "unknown"
+    },
+    "item-4543570020034898": {
+      "title": "Accordion",
+      "description": "",
+      "status": "outdated"
+    },
+    "item-6197177579256280": {
+      "title": "Accordions",
+      "description": "",
+      "status": "outdated"
+    },
+    "item-8656489700392861": {
+      "title": "Button",
+      "description": "",
+      "status": "stable"
+    },
+    "item-4708105556520602": {
+      "title": "Icon Button",
+      "description": "",
+      "status": "unknown"
+    },
+    "item-3423751161552606": {
+      "title": "Button bars",
+      "description": "",
+      "status": "stable"
+    },
+    "item-3978370186457443": {
+      "title": "Buttons: Dashed",
+      "description": "",
+      "status": "outdated"
+    },
+    "item-0485582379037597": {
+      "title": "Buttons: Minor",
+      "description": "",
+      "status": "underReview"
+    },
+    "item-8322773586821696": {
+      "title": "Buttons: Multi-action",
+      "description": "",
+      "status": "unknown"
+    },
+    "item-5044064091414053": {
+      "title": "Buttons: Split",
+      "description": "",
+      "status": "deprecated"
+    },
+    "item-6177038872101807": {
+      "title": "Buttons: Toggle",
+      "description": "",
+      "status": "unknown"
+    },
+    "item-6265127825007195": {
+      "title": "Checkboxes",
+      "description": "",
+      "status": "unknown"
+    },
+    "item-1228498658827213": {
+      "title": "Label",
+      "description": "",
+      "status": "unknown"
+    },
+    "item-6268469840582772": {
+      "title": "Text inputs",
+      "description": "",
+      "status": "unknown"
+    },
+    "item-4764388144011160": {
+      "title": "Tooltip",
       "description": "",
       "status": "unknown"
     }
   },
-  "connections": [
-    {
+  "connections": {
+    "0": {
       "to": "item-1517199789207337",
       "from": "item-3440554479728085"
     },
-    {
+    "1": {
       "to": "item-7503432517630574",
       "from": "item-3440554479728085"
     },
-    {
+    "2": {
       "to": "item-1629604186476431",
       "from": "item-8515090461252666"
+    },
+    "3": {
+      "to": "item-6177038872101807",
+      "from": "item-8656489700392861"
+    },
+    "4": {
+      "to": "item-5044064091414053",
+      "from": "item-8656489700392861"
+    },
+    "5": {
+      "to": "item-8322773586821696",
+      "from": "item-8656489700392861"
+    },
+    "6": {
+      "to": "item-0485582379037597",
+      "from": "item-8656489700392861"
+    },
+    "7": {
+      "to": "item-3978370186457443",
+      "from": "item-8656489700392861"
+    },
+    "8": {
+      "to": "item-3423751161552606",
+      "from": "item-8656489700392861"
+    },
+    "9": {
+      "to": "item-4708105556520602",
+      "from": "item-8656489700392861"
+    },
+    "10": {
+      "to": "item-8656489700392861",
+      "from": "item-0947408874185667"
+    },
+    "11": {
+      "to": "item-8656489700392861",
+      "from": "item-8515090461252666"
+    },
+    "12": {
+      "to": "item-8656489700392861",
+      "from": "item-3440554479728085"
+    },
+    "13": {
+      "to": "item-6265127825007195",
+      "from": "item-5413394689767400"
+    },
+    "14": {
+      "to": "item-4708105556520602",
+      "from": "item-5413394689767400"
+    },
+    "15": {
+      "to": "item-4543570020034898",
+      "from": "item-0947408874185667"
+    },
+    "16": {
+      "to": "item-4543570020034898",
+      "from": "item-8515090461252666"
+    },
+    "17": {
+      "to": "item-4543570020034898",
+      "from": "item-3440554479728085"
+    },
+    "18": {
+      "to": "item-6268469840582772",
+      "from": "item-1228498658827213"
+    },
+    "19": {
+      "to": "item-6265127825007195",
+      "from": "item-1228498658827213"
+    },
+    "20": {
+      "to": "item-6265127825007195",
+      "from": "item-4764388144011160"
+    },
+    "21": {
+      "to": "item-1228498658827213",
+      "from": "item-3440554479728085"
+    },
+    "22": {
+      "to": "item-1228498658827213",
+      "from": "item-8515090461252666"
+    },
+    "23": {
+      "to": "item-1228498658827213",
+      "from": "item-0947408874185667"
     }
-  ],
+  },
   "columns": {
     "column--0916868167026921": {
       "title": "Foundations",
       "items": [
+        "item-1964129327926841",
+        "item-2608125733640464",
+        "item-5413394689767400",
+        "item-9870218546510371",
         "item-3440554479728085",
         "item-8515090461252666",
         "item-0947408874185667"
@@ -57,14 +220,25 @@
     "column--2893621031052356": {
       "title": "Components I",
       "items": [
-        "item-1517199789207337",
-        "item-7503432517630574"
+        "item-4764388144011160",
+        "item-1228498658827213",
+        "item-8656489700392861",
+        "item-4543570020034898"
       ]
     },
     "column--4398902021710532": {
       "title": "Components II",
       "items": [
-        "item-1629604186476431"
+        "item-6268469840582772",
+        "item-6265127825007195",
+        "item-6177038872101807",
+        "item-5044064091414053",
+        "item-8322773586821696",
+        "item-0485582379037597",
+        "item-3978370186457443",
+        "item-3423751161552606",
+        "item-4708105556520602",
+        "item-6197177579256280"
       ]
     },
     "column--0889911872074318": {
