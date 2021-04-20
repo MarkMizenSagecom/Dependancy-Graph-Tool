@@ -1,13 +1,16 @@
+import { useMemo, useRef } from "react";
 import IconButton from "carbon-react/lib/components/icon-button";
 import Icon from "carbon-react/lib/components/icon";
-import { useMemo, useRef } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
+
+import { getReadOnly } from "../../redux/settings/settingsSlice";
 import {
   addItem,
   getColumns,
   updateColumn,
 } from "../../redux/dependancies/dependanciesSlice";
+
 import ColumnItem from "./ColumnItem";
 
 const ColumnEle = styled.div`
@@ -34,6 +37,13 @@ const ColumnTitle = styled.div`
   padding: 1.5rem 0;
   display: flex;
   gap: 1rem;
+`;
+
+const ColumnTitleText = styled.h2`
+  font-size: 18px;
+  font-weight: 600;
+  padding: 0.5rem;
+  border-bottom: 2px solid transparent;
 `;
 
 const ColumnTitleEditable = styled.input`
@@ -70,32 +80,36 @@ function Column({ justify = "flex-start", colId }) {
   const columns = useSelector(getColumns);
 
   const column = useMemo(() => columns[colId], [colId, columns]);
-
+  const readonly = useSelector(getReadOnly);
   const titleInput = useRef(null);
 
   return (
     <ColumnEle>
       <ColumnTitle>
-        <EditableWrap>
-          <ColumnTitleEditable
-            ref={titleInput}
-            value={column?.title}
-            type="text"
-            onChange={(ev) => {
-              dispatch({
-                type: updateColumn.type,
-                payload: { id: colId, title: ev.target.value },
-              });
-            }}
-          />
-          <EditableIcon
-            onClick={() => {
-              titleInput.current.focus();
-            }}
-          >
-            <Icon type="edit" />
-          </EditableIcon>
-        </EditableWrap>
+        {readonly ? (
+          <ColumnTitleText>{column?.title}</ColumnTitleText>
+        ) : (
+          <EditableWrap>
+            <ColumnTitleEditable
+              ref={titleInput}
+              value={column?.title}
+              type="text"
+              onChange={(ev) => {
+                dispatch({
+                  type: updateColumn.type,
+                  payload: { id: colId, title: ev.target.value },
+                });
+              }}
+            />
+            <EditableIcon
+              onClick={() => {
+                titleInput.current.focus();
+              }}
+            >
+              <Icon type="edit" />
+            </EditableIcon>
+          </EditableWrap>
+        )}
 
         <IconButton
           type="button"

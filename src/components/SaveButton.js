@@ -2,8 +2,10 @@ import Button from "carbon-react/lib/components/button";
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getSaving, save } from "../redux/dependancies/dependanciesSlice";
+import { getReadOnly } from "../redux/settings/settingsSlice";
 
 function SaveButton() {
+  const readonly = useSelector(getReadOnly);
   const saving = useSelector(getSaving);
   const dispatch = useDispatch();
   const handleClick = useCallback(
@@ -13,8 +15,18 @@ function SaveButton() {
     },
     [dispatch]
   );
+
+  if (readonly) {
+    return null;
+  }
+
   return (
-    <Button fullWidth buttonType="primary" disabled={saving} onClick={handleClick}>
+    <Button
+      fullWidth
+      buttonType="primary"
+      disabled={saving}
+      onClick={handleClick}
+    >
       Save
     </Button>
   );

@@ -13,6 +13,13 @@ const ItemActions = styled.div`
   justify-content: flex-end;
 `;
 
+const ItemList = styled.ul`
+  max-height: 400px;
+  overflow-y: auto;
+  list-style: none;
+  padding: 0;
+`;
+
 const Item = styled.li`
   padding: 0.5rem;
   border: 1px solid #ccd6db;
@@ -28,7 +35,6 @@ function SearchResults({ searchTerm }) {
       }
       const items = getItems(state);
       if (!items) {
-        console.log(items);
         return [];
       }
       return Object.keys(items)
@@ -47,7 +53,7 @@ function SearchResults({ searchTerm }) {
   const results = useSelector((state) => searchSelector(state, searchTerm));
   return (
     <div>
-      <Typography as="ul" listStyleType="none" pl={0}>
+      <ItemList>
         {results.map((item) => {
           return (
             <Item key={item.id} as="li" listStyleType="none" pl={0}>
@@ -55,16 +61,6 @@ function SearchResults({ searchTerm }) {
                 {item.title}
               </Typography>
               <ItemActions>
-                {/* <Button
-                  size="small"
-                  onClick={() => {
-                    const target = document.querySelector(`#${item.id}`);
-                    target?.scrollIntoView();
-                    target?.focus();
-                  }}
-                >
-                  Highlight
-                </Button> */}
                 <Button
                   size="small"
                   onClick={() => {
@@ -77,7 +73,7 @@ function SearchResults({ searchTerm }) {
             </Item>
           );
         })}
-      </Typography>
+      </ItemList>
     </div>
   );
 }
