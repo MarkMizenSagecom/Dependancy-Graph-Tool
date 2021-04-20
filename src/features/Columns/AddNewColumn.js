@@ -12,7 +12,6 @@ function AddNewColumn() {
         onClick={() => {
           dispatch({ type: addColumn.toString() });
         }}
-        size="large"
         iconType="plus"
       >Add New Column</Button>
     </div>

@@ -49,12 +49,12 @@ function Connections() {
           const toRef = refsContext.refs[to];
 
           const fromClientRect = fromRef.getBoundingClientRect();
-          const xStart = fromClientRect.right;
+          const xStart = fromClientRect.right - 320;
           const yStart =
             fromClientRect.top + scrollTop + fromClientRect.height / 2;
 
           const toClientRect = toRef.getBoundingClientRect();
-          let xEnd = toClientRect.right;
+          let xEnd = toClientRect.right - 320;
           let yEnd = toClientRect.top + scrollTop + toClientRect.height / 2;
 
           if (xStart === xEnd || Math.abs(xStart - xEnd) < 1) {
@@ -70,7 +70,7 @@ function Connections() {
               start: { x: xStart, y: yStart },
             };
           } else {
-            xEnd = toClientRect.left;
+            xEnd = toClientRect.left - 320;
 
             return {
               line: `M ${xStart} ${yStart} 

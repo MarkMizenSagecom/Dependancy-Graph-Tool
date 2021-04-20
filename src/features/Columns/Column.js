@@ -11,7 +11,6 @@ import {
 import ColumnItem from "./ColumnItem";
 
 const ColumnEle = styled.div`
-  scroll-snap-align: start;
   display: flex;
   padding: 0 2.5rem;
   flex: 0 0 320px;
@@ -70,9 +69,7 @@ function Column({ justify = "flex-start", colId }) {
   const dispatch = useDispatch();
   const columns = useSelector(getColumns);
 
-  const column = useMemo(() => {
-    return columns[colId];
-  }, [colId, columns]);
+  const column = useMemo(() => columns[colId], [colId, columns]);
 
   const titleInput = useRef(null);
 
@@ -82,11 +79,12 @@ function Column({ justify = "flex-start", colId }) {
         <EditableWrap>
           <ColumnTitleEditable
             ref={titleInput}
-            value={column?.name}
+            value={column?.title}
+            type="text"
             onChange={(ev) => {
               dispatch({
                 type: updateColumn.type,
-                payload: { id: colId, name: ev.target.value },
+                payload: { id: colId, title: ev.target.value },
               });
             }}
           />

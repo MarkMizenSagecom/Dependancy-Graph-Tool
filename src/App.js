@@ -1,38 +1,44 @@
 import "./App.css";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-// import { useDispatch, useSelector } from "react-redux";
-// import { getColumns, getItems } from "./redux/dependancies/dependanciesSlice";
-
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-
+import LoadData from "./components/LoadData";
 import TreeView from "./features/Tree/TreeView";
 import ColumnsView from "./features/Columns/ColumnsView";
 
-import Guard from "./features/Auth/Guard";
+import AppSidebar from "./components/AppSidebar";
 
-import AppHeader from "./components/AppHeader";
+import styled from "styled-components";
+
+const AppWrap = styled.div`
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 100vw;
+  align-items: stretch;
+`;
+
+const Wrap = styled.div`
+  flex: 0 1 calc(100% - 320px);
+  max-width: calc(100% - 320px);
+  position: relative;
+  z-index: 1;
+`;
 
 function App() {
   return (
-    <div className="App">
+    <AppWrap>
+      <LoadData />
       <Router>
-        <AppHeader />
+        <AppSidebar />
 
-        <Guard>
+        <Wrap>
           <Switch>
             <Route path="/tree/:itemId" component={TreeView} />
-            <Route path="/columns" component={ColumnsView} />
-
-            <Route path="/">
-              <div>
-                <Link to="/tree">Tree</Link>
-                <Link to="/columns">Columns</Link>
-              </div>
-            </Route>
+            <Route path="/" component={ColumnsView} />
           </Switch>
-        </Guard>
+        </Wrap>
       </Router>
-    </div>
+    </AppWrap>
   );
 }
 

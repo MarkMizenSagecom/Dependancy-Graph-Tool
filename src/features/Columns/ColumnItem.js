@@ -14,6 +14,7 @@ import Button from "carbon-react/lib/components/button";
 import Content from "carbon-react/lib/components/content";
 import Icon from "carbon-react/lib/components/icon";
 import Tile from "carbon-react/lib/components/tile";
+import Pill from "carbon-react/lib/components/pill";
 import Typography from "carbon-react/lib/components/typography";
 
 import { Refs } from "../../context/refs";
@@ -23,6 +24,8 @@ import {
   addConnection,
 } from "../../redux/dependancies/dependanciesSlice";
 
+import { getReadOnly } from "../../redux/settings/settingsSlice";
+
 import {
   startLinking,
   doneLinking,
@@ -31,6 +34,8 @@ import {
 } from "../../redux/linking/linkingSlice";
 
 import NodeEditor from "./NodeEditor";
+
+import statuses from "../../data/statuses";
 
 const ColumnItemEle = styled.div`
   position: relative;
@@ -67,6 +72,8 @@ function ColumnItem({ itemId }) {
   const items = useSelector(getItems);
   const linkingSource = useSelector(getLinkingSource);
   const linking = useSelector(getIsLinking);
+
+  const readonly = useSelector(getReadOnly);
 
   useEffect(() => {
     console.log({ linkingSource, linking });
@@ -146,7 +153,7 @@ function ColumnItem({ itemId }) {
   }, [itemId, linking, dispatch]);
 
   return (
-    <ColumnItemEle ref={ref} onClick={addLink} linking={!!linking}>
+    <ColumnItemEle ref={ref} onClick={addLink} linking={!!linking} id={itemId}>
       <Tile orientation="vertical" pixelWidth={320}>
         <Content>
           {edittable ? (
@@ -169,11 +176,15 @@ function ColumnItem({ itemId }) {
                 {item.title ?? "\u00A0"}
               </Typography>
 
-              {item.description && (
-                <Typography mb={1}>{item.description}</Typography>
+              {item.status && (
+                <Pill mb={1} borderColor={statuses[item.status]?.color} fill>
+                  {statuses[item.status]?.text}
+                </Pill>
               )}
 
-              {item.status && <Typography mb={1}>{item.status}</Typography>}
+              {item.description && (
+                <Typography mb={2}>{item.description}</Typography>
+              )}
 
               <ItemButtons>
                 {linkingSource === itemId ? (
@@ -186,20 +197,24 @@ function ColumnItem({ itemId }) {
                   </Button>
                 ) : (
                   <>
-                    <Button
-                      size="small"
-                      onClick={startEditing}
-                      disabled={!!linking}
-                    >
-                      Edit
-                    </Button>
-                    <Button
-                      size="small"
-                      onClick={startLinkingFromNode}
-                      disabled={!!linking}
-                    >
-                      Link
-                    </Button>
+                    {!readonly && (
+                      <>
+                        <Button
+                          size="small"
+                          onClick={startEditing}
+                          disabled={!!linking}
+                        >
+                          Edit
+                        </Button>
+                        <Button
+                          size="small"
+                          onClick={startLinkingFromNode}
+                          disabled={!!linking}
+                        >
+                          Link
+                        </Button>
+                      </>
+                    )}
                     <Button
                       size="small"
                       onClick={viewTree}

@@ -1,0 +1,83 @@
+{
+  "items": {
+    "item-0947408874185667": {
+      "title": "Name",
+      "description": "",
+      "status": "unknown"
+    },
+    "item-8515090461252666": {
+      "title": "Name",
+      "description": "",
+      "status": "unknown"
+    },
+    "item-3440554479728085": {
+      "title": "Name",
+      "description": "",
+      "status": "unknown"
+    },
+    "item-7503432517630574": {
+      "title": "Name",
+      "description": "",
+      "status": "unknown"
+    },
+    "item-1517199789207337": {
+      "title": "Name",
+      "description": "",
+      "status": "unknown"
+    },
+    "item-1629604186476431": {
+      "title": "Name",
+      "description": "",
+      "status": "unknown"
+    }
+  },
+  "connections": [
+    {
+      "to": "item-1517199789207337",
+      "from": "item-3440554479728085"
+    },
+    {
+      "to": "item-7503432517630574",
+      "from": "item-3440554479728085"
+    },
+    {
+      "to": "item-1629604186476431",
+      "from": "item-8515090461252666"
+    }
+  ],
+  "columns": {
+    "column--0916868167026921": {
+      "title": "Foundations",
+      "items": [
+        "item-3440554479728085",
+        "item-8515090461252666",
+        "item-0947408874185667"
+      ]
+    },
+    "column--2893621031052356": {
+      "title": "Components I",
+      "items": [
+        "item-1517199789207337",
+        "item-7503432517630574"
+      ]
+    },
+    "column--4398902021710532": {
+      "title": "Components II",
+      "items": [
+        "item-1629604186476431"
+      ]
+    },
+    "column--0889911872074318": {
+      "title": "Components III",
+      "items": []
+    },
+    "column--6121349898901440": {
+      "title": "Patterns",
+      "items": []
+    },
+    "column--4180230756538166": {
+      "title": "Templates",
+      "items": []
+    }
+  }
+}

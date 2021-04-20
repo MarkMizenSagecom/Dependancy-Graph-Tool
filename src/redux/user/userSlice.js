@@ -9,17 +9,19 @@ export const userSlice = createSlice({
       photoURL: null,
     },
     signedIn: false,
+    writeAccess: false,
   },
   reducers: {
     setUser: (state, action) => {
-      console.log("TEST", { state, action });
       if (action.payload) {
         state.userDetails = {
-          uid: action.payload.uid,
-          email: action.payload.email,
-          photoURL: action.payload.photoURL,
+          uid: action.payload.user.uid,
+          email: action.payload.user.email,
+          photoURL: action.payload.user.photoURL,
         };
         state.signedIn = true;
+        state.writeAccess =
+          action.payload.user.uid === "hFgfQcppuQXWOjHC72Cs7XK0uQ52";
       } else {
         state.userDetails = {
           uid: null,
@@ -27,6 +29,7 @@ export const userSlice = createSlice({
           photoURL: null,
         };
         state.signedIn = false;
+        state.writeAccess = false;
       }
     },
   },
@@ -36,5 +39,6 @@ export const { setUser } = userSlice.actions;
 
 export const getUserDetails = (state) => state?.user?.userDetails;
 export const getSignedIn = (state) => state?.user?.signedIn;
+export const getWriteAccess = (state) => state?.user?.writeAccess;
 
 export default userSlice.reducer;

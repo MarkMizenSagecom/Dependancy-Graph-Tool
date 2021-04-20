@@ -1,4 +1,3 @@
-import { useMemo } from "react";
 import { useParams } from "react-router-dom";
 import { createContext } from "react";
 import { useSelector } from "react-redux";
@@ -40,8 +39,6 @@ export function TreeContextProvider({ children }) {
     }
   });
 
-  console.log(itemId, nodesToShow);
-
   // Assign the row and position in row
   const colKeys = Object.keys(columns);
 
@@ -58,7 +55,7 @@ export function TreeContextProvider({ children }) {
       }
       nodesToShow[nodeToShowIndex].row = index;
       nodesToShow[nodeToShowIndex].rowCount = rowCount++;
-      nodesToShow[nodeToShowIndex].col = columns[colKey].name;
+      nodesToShow[nodeToShowIndex].col = columns[colKey].title;
     });
 
     rowLength[index] = rowCount;
@@ -80,8 +77,6 @@ export function TreeContextProvider({ children }) {
   });
 
   const active = nodes.findIndex((node) => node.id === itemId);
-
-  console.log({ nodes, columns, connections });
 
   return (
     <TreeContext.Provider value={{ nodes, maxColumns: columnsLength, active }}>

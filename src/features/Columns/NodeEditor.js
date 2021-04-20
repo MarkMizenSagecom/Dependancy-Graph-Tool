@@ -2,6 +2,8 @@ import { useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
+import statuses from "../../data/statuses";
+
 import Button from "carbon-react/lib/components/button";
 import Textbox from "carbon-react/lib/__experimental__/components/textbox";
 import Typography from "carbon-react/lib/components/typography";
@@ -16,6 +18,16 @@ const ItemButtons = styled.div`
   display: flex;
   justify-content: flex-end;
   gap: 1rem;
+`;
+
+const Circle = styled.span`
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin: 0 0.5rem;
+  vertical-align: middle;
+  ${(props) => props.color && `background: ${props.color};`}
 `;
 
 function NodeEditor({ itemId, item, doneEditing }) {
@@ -56,15 +68,6 @@ function NodeEditor({ itemId, item, doneEditing }) {
         />
       </Typography>
       <Typography>
-        <Textbox
-          labelInline
-          label="Description"
-          value={item.description}
-          size="small"
-          onChange={(ev) => update("description", ev.target.value)}
-        />
-      </Typography>
-      <Typography>
         <Select
           labelInline
           name="simple"
@@ -75,11 +78,26 @@ function NodeEditor({ itemId, item, doneEditing }) {
             update("status", ev.target.value);
           }}
         >
-          <Option text="Blue" value="blue" />
+          {Object.keys(statuses).map((status) => {
+            return (
+              <Option value={status} key={status}>
+                <Circle color={statuses[status].color} />
+                {statuses[status].text}
+              </Option>
+            );
+          })}
         </Select>
       </Typography>
+      <Typography>
+        <Textbox
+          labelInline
+          label="Description"
+          value={item.description}
+          size="small"
+          onChange={(ev) => update("description", ev.target.value)}
+        />
+      </Typography>
       <ItemButtons>
-          
         <Button size="small" onClick={setConfirmDelete}>
           Delete
         </Button>

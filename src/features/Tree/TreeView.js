@@ -5,12 +5,10 @@ import styled from "styled-components";
 import useViewport from "../../hooks/useViewport";
 
 import TreeContents from "./TreeContents";
-import Button from "carbon-react/lib/components/button";
-import { useHistory } from "react-router";
 import { TreeContextProvider } from "./TreeContext";
 
 const TreeViewWrap = styled.div`
-  width: 100vw;
+  width: calc(100vw - 320px);
   height: 100vh;
   position: relative;
 `;
@@ -23,7 +21,6 @@ const TreeViewSVG = styled.svg`
 
 function TreeView() {
   const viewport = useViewport();
-  const history = useHistory();
   const [svgProps, setSvgProps] = useState({
     height: 300,
     width: 600,
@@ -32,7 +29,11 @@ function TreeView() {
 
   useEffect(() => {
     const { width, height } = viewport;
-    setSvgProps({ width, height, viewbox: `0 0 ${width} ${height}` });
+    setSvgProps({
+      width: width - 320,
+      height,
+      viewbox: `0 0 ${width - 320} ${height}`,
+    });
   }, [viewport, setSvgProps]);
 
   return (
@@ -47,14 +48,6 @@ function TreeView() {
             <TreeContents />
           </DraggableGroup>
         </TreeViewSVG>
-        <div
-          style={{
-            zIndex: 10,
-            position: "relative",
-          }}
-        >
-          <Button onClick={() => history.push("/columns")}>Editor</Button>
-        </div>
       </TreeContextProvider>
     </TreeViewWrap>
   );

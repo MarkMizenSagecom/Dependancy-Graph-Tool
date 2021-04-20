@@ -8,13 +8,15 @@ const genId = (prefix = "item") =>
 const genItem = (partial = {}) => ({
   title: "Name",
   description: "",
-  status: "",
+  status: "unknown",
   ...partial,
 });
 
 export const dependanciesSlice = createSlice({
   name: "dependancies",
   initialState: {
+    saving: false,
+    shouldLoad: true,
     items: {},
     connections: [],
     columns: {},
@@ -77,7 +79,7 @@ export const dependanciesSlice = createSlice({
       const id = genId("column-");
 
       state.columns[id] = {
-        name: "Column title",
+        title: "Column title",
         items: [],
       };
     },
@@ -87,9 +89,16 @@ export const dependanciesSlice = createSlice({
     },
     updateColumn: (state, action) => {
       const { id, ...update } = action.payload;
-      state.columns[id] = {
-        ...state.columns[id],
-        ...update,
+
+      return {
+        ...state,
+        columns: {
+          ...state.columns,
+          [id]: {
+            ...state.columns[id],
+            ...update,
+          },
+        },
       };
     },
     addConnection: (state, action) => {
@@ -97,7 +106,6 @@ export const dependanciesSlice = createSlice({
       const existing = state.connections.findIndex(
         (conn) => conn.to === to && conn.from === from
       );
-      console.log({existing})
       if (existing > -1) {
         state.connections.splice(existing, 1);
       } else {
@@ -110,6 +118,20 @@ export const dependanciesSlice = createSlice({
         (item) => item.to === to && item.from === from
       );
     },
+    updateAll: (state, action) => {
+      const { items, columns, connections } = action.payload;
+
+      state.items = items;
+      state.columns = columns;
+      state.connections = connections;
+      state.shouldLoad = false;
+    },
+    save: (state) => {
+      state.saving = true;
+    },
+    saved: (state) => {
+      state.saving = false;
+    },
   },
 });
 
@@ -121,10 +143,16 @@ export const {
   addColumn,
   updateColumn,
   addConnection,
+  updateAll,
+  save,
+  saved,
 } = dependanciesSlice.actions;
 
 export const getItems = (state) => state?.dependancies?.items;
 export const getColumns = (state) => state?.dependancies?.columns;
 export const getConnections = (state) => state?.dependancies?.connections;
+export const getShouldLoad = (state) => state?.dependancies?.shouldLoad;
+export const getShouldSave = (state) => state?.dependancies?.saving;
+export const getSaving = (state) => state?.dependancies?.saving;
 
 export default dependanciesSlice.reducer;

@@ -8,7 +8,6 @@ export const linkingSlice = createSlice({
   reducers: {
     startLinking: (state, action) => {
       state.source = action.payload.id;
-      console.log(action.payload.id);
     },
     doneLinking: (state) => {
       state.source = false;

@@ -5,7 +5,6 @@ import { ClickAndDragProvider } from "../../context/clickAndDrag";
 import { RefsProvider } from "../../context/refs";
 import { getColumns } from "../../redux/dependancies/dependanciesSlice";
 
-import AddNewColumn from "./AddNewColumn";
 import Connections from "./Connections";
 import Column from "./Column";
 import { updateScrollLeft } from "../../redux/connections/connectionsSlice";
@@ -22,7 +21,6 @@ const ColumnsScrollableWrap = styled.div`
   display: flex;
   flex: 1 1 100%;
   overflow-x: scroll;
-  // scroll-snap-type: x proximity;
   scroll-behaviour: smooth;
 `;
 
@@ -49,19 +47,16 @@ function ColumnsView() {
   );
 
   return (
-    <div style={{ position: "relative" }}>
-      <Provders>
-        <Connections />
-        <ColumnsViewWrap>
-          <ColumnsScrollableWrap ref={scrollable} onScroll={handleScroll}>
-            {Object.keys(columns).map((colId) => (
-              <Column key={colId} colId={colId} />
-            ))}
-            <AddNewColumn />
-          </ColumnsScrollableWrap>
-        </ColumnsViewWrap>
-      </Provders>
-    </div>
+    <Provders>
+      <Connections />
+      <ColumnsViewWrap>
+        <ColumnsScrollableWrap ref={scrollable} onScroll={handleScroll}>
+          {Object.keys(columns).map((colId) => (
+            <Column key={colId} colId={colId} />
+          ))}
+        </ColumnsScrollableWrap>
+      </ColumnsViewWrap>
+    </Provders>
   );
 }
 export default ColumnsView;

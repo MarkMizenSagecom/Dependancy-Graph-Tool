@@ -26,7 +26,6 @@ function AuthView() {
     signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID],
     callbacks: {
       signInSuccessWithAuthResult(user) {
-        console.log("user x", user);
         dispatch({ type: setUser.type, payload: user });
         return false;
       },
