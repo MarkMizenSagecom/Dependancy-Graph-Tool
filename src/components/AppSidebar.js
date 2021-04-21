@@ -4,10 +4,12 @@ import styled from "styled-components";
 import Button from "carbon-react/lib/components/button";
 
 import { addColumn } from "../redux/dependancies/dependanciesSlice";
-import { getReadOnly } from "../redux/settings/settingsSlice";
+import { getReadOnly } from "../redux/user/userSlice";
 
+import UserDetails from "./UserDetails";
 import ComponentSearch from "./ComponentSearch";
 import SaveButton from "./SaveButton";
+import Typography from "carbon-react/lib/components/typography";
 
 const SidebarWrap = styled.div`
   width: 320px;
@@ -36,6 +38,12 @@ function AppSidebar() {
   const readonly = useSelector(getReadOnly);
   return (
     <SidebarWrap>
+
+      <Typography variant="h1">Dependancy Graph</Typography>
+
+      <UserDetails />
+      <Hr />
+
       <ComponentSearch />
 
       <Hr />

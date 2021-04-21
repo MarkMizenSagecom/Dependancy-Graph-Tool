@@ -4,7 +4,8 @@ import Icon from "carbon-react/lib/components/icon";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 
-import { getReadOnly } from "../../redux/settings/settingsSlice";
+import { getReadOnly } from "../../redux/user/userSlice";
+
 import {
   addItem,
   getColumns,

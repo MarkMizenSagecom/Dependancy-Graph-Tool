@@ -2,7 +2,7 @@ import Button from "carbon-react/lib/components/button";
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getSaving, save } from "../redux/dependancies/dependanciesSlice";
-import { getReadOnly } from "../redux/settings/settingsSlice";
+import { getReadOnly } from "../redux/user/userSlice";
 
 function SaveButton() {
   const readonly = useSelector(getReadOnly);

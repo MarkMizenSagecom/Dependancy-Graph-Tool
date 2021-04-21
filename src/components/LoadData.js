@@ -31,7 +31,15 @@ const loadData =
         };
       }
     : async () => {
-        return await fetch("./data.json").then((res) => res.json());
+        const { items, connections, columns } = await fetch(
+          "./data.json"
+        ).then((res) => res.json());
+
+        return {
+          items,
+          connections: Object.keys(connections).map((key) => connections[key]), 
+          columns
+        };
       };
 
 const saveData =
@@ -58,7 +66,9 @@ const saveData =
               "Content-Type": "application/json",
             },
             body: JSON.stringify(
-              Object.fromEntries(connections.map((connection, index) => [index, connection]))
+              Object.fromEntries(
+                connections.map((connection, index) => [index, connection])
+              )
             ),
           }),
         ]);

@@ -24,17 +24,17 @@ function FirebaseSync() {
   const dispatch = useDispatch();
 
   const signedIn = useSelector(getSignedIn);
-  const firebase = useFirestore();
+  const firestore = useFirestore();
 
   useEffect(() => {
-    if (!signedIn || !shouldLoad) {
+    if (!shouldLoad) {
       return;
     }
 
     Promise.all([
-      firebase.collection("items").get(),
-      firebase.collection("columns").get(),
-      firebase.collection("connections").doc("connections").get(),
+      firestore.collection("items").get(),
+      firestore.collection("columns").get(),
+      firestore.collection("connections").get(),
     ]).then(([itemsData, columnsData, connectionsData]) => {
       const itemsValues = {};
       itemsData.docs.forEach((doc) => {
@@ -46,13 +46,10 @@ function FirebaseSync() {
         columnsValues[doc.id] = doc.data();
       });
 
-      const connectionsValues = connectionsData.data().current;
-      const connectionsArray = Object.keys(connectionsValues).map((from) => {
-        const to = connectionsValues[from];
-        return {
-          to,
-          from,
-        };
+      const connectionsValues = connectionsData.docs.map((doc) => {
+        const data = doc.data();
+        const { to, from } = data;
+        return { to, from };
       });
 
       dispatch({
@@ -60,11 +57,11 @@ function FirebaseSync() {
         payload: {
           items: itemsValues,
           columns: columnsValues,
-          connections: connectionsArray,
+          connections: connectionsValues,
         },
       });
     });
-  }, [shouldLoad, signedIn, firebase, dispatch]);
+  }, [shouldLoad, firestore, dispatch]);
 
   useEffect(() => {
     if (!shouldSave) {
@@ -76,12 +73,71 @@ function FirebaseSync() {
       return;
     }
 
-    console.log({ items, connections, columns });
+    Promise.all([
+      firestore.collection("items").get(),
+      firestore.collection("columns").get(),
+      firestore.collection("connections").get(),
+    ])
+      .then(([itemsData, columnsData, connectionsData]) => {
+        const batch = firestore.batch();
+
+        // Remove deleted items
+        itemsData.docs.forEach((doc) => {
+          if (!items[doc.id]) {
+            const ref = firestore.collection("items").doc(doc.id);
+            batch.delete(ref);
+          }
+        });
+
+        // Remove deleted columns
+        columnsData.docs.forEach((doc) => {
+          if (!columns[doc.id]) {
+            const ref = firestore.collection("columns").doc(doc.id);
+            batch.delete(ref);
+          }
+        });
+
+        connectionsData.docs.forEach((doc) => {
+          const ref = firestore.collection("connections").doc(doc.id);
+          batch.delete(ref);
+        });
+
+        Object.keys(items).forEach((id) => {
+          const ref = firestore.collection("items").doc(id);
+          batch.set(ref, items[id]);
+        });
+
+        Object.keys(columns).forEach((id) => {
+          const ref = firestore.collection("columns").doc(id);
+          batch.set(ref, columns[id]);
+        });
+
+        connections.forEach((connection, index) => {
+          const ref = firestore.collection("connections").doc(String(index));
+          batch.set(ref, connection);
+        });
+
+        return batch.commit();
+      })
+      .then(() => {
+        console.log("batch executed");
+      })
+      .catch((err) => {
+        console.log("batch failed", err);
+      });
 
     setTimeout(() => {
       dispatch({ type: saved.type });
     }, 500);
-  }, [dispatch, shouldSave, writeAccess, items, connections, columns]);
+  }, [
+    dispatch,
+    shouldSave,
+    writeAccess,
+    items,
+    connections,
+    columns,
+    firestore,
+  ]);
 
   return null;
 }

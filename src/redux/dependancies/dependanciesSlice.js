@@ -24,7 +24,12 @@ export const dependanciesSlice = createSlice({
   reducers: {
     addItem: (state, action) => {
       const { column } = action.payload;
-      const id = genId();
+      let id = genId();
+      // Make sure there are no id conflicts. 
+      // Should be very low, but non-zero, chance
+      while (!!state.items[id]) {
+        id = genId();
+      }
       state.items[id] = genItem();
       state.columns[column].items.unshift(id);
 

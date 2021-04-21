@@ -1,7 +1,9 @@
 import "./App.css";
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
-import LoadData from "./components/LoadData";
+// import LoadData from "./components/LoadData";
+import Guard from "./components/Guard";
+import FirebaseSync from "./components/FirebaseSync";
 import TreeView from "./features/Tree/TreeView";
 import ColumnsView from "./features/Columns/ColumnsView";
 
@@ -27,17 +29,20 @@ const Wrap = styled.div`
 function App() {
   return (
     <AppWrap>
-      <LoadData />
-      <Router>
-        <AppSidebar />
+      <Guard>
+        {/* <LoadData /> */}
+        <FirebaseSync />
+        <Router>
+          <AppSidebar />
 
-        <Wrap>
-          <Switch>
-            <Route path="/tree/:itemId" component={TreeView} />
-            <Route path="/" component={ColumnsView} />
-          </Switch>
-        </Wrap>
-      </Router>
+          <Wrap>
+            <Switch>
+              <Route path="/tree/:itemId" component={TreeView} />
+              <Route path="/" component={ColumnsView} />
+            </Switch>
+          </Wrap>
+        </Router>
+      </Guard>
     </AppWrap>
   );
 }

@@ -24,7 +24,7 @@ import {
   addConnection,
 } from "../../redux/dependancies/dependanciesSlice";
 
-import { getReadOnly } from "../../redux/settings/settingsSlice";
+import { getReadOnly } from "../../redux/user/userSlice";
 
 import {
   startLinking,
