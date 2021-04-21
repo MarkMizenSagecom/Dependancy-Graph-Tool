@@ -9,7 +9,7 @@ import {
   updateAll,
   saved,
 } from "../redux/dependancies/dependanciesSlice";
-import { getSignedIn, getWriteAccess } from "../redux/user/userSlice";
+import { getWriteAccess } from "../redux/user/userSlice";
 import { useFirestore } from "reactfire";
 
 function FirebaseSync() {
@@ -23,7 +23,6 @@ function FirebaseSync() {
 
   const dispatch = useDispatch();
 
-  const signedIn = useSelector(getSignedIn);
   const firestore = useFirestore();
 
   useEffect(() => {
@@ -124,11 +123,10 @@ function FirebaseSync() {
       })
       .catch((err) => {
         console.log("batch failed", err);
+      })
+      .finally(() => {
+        dispatch({ type: saved.type });
       });
-
-    setTimeout(() => {
-      dispatch({ type: saved.type });
-    }, 500);
   }, [
     dispatch,
     shouldSave,

@@ -39,7 +39,7 @@ function AppSidebar() {
   return (
     <SidebarWrap>
 
-      <Typography variant="h1">Dependancy Graph</Typography>
+      <Typography ml={4} mt={3} variant="h1">Dependancy Graph</Typography>
 
       <UserDetails />
       <Hr />

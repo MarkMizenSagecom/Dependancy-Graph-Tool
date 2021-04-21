@@ -13,6 +13,7 @@ import styled from "styled-components";
 import Button from "carbon-react/lib/components/button";
 import Content from "carbon-react/lib/components/content";
 import Icon from "carbon-react/lib/components/icon";
+import IconButton from "carbon-react/lib/components/icon-button";
 import Tile from "carbon-react/lib/components/tile";
 import Pill from "carbon-react/lib/components/pill";
 import Typography from "carbon-react/lib/components/typography";
@@ -24,7 +25,7 @@ import {
   addConnection,
 } from "../../redux/dependancies/dependanciesSlice";
 
-import { getReadOnly } from "../../redux/user/userSlice";
+import { getCommentAccess, getReadOnly } from "../../redux/user/userSlice";
 
 import {
   startLinking,
@@ -36,6 +37,13 @@ import {
 import NodeEditor from "./NodeEditor";
 
 import statuses from "../../data/statuses";
+import Comments from "../Comments/Comments";
+
+const CommentBtnWrap = styled.div`
+  position: absolute;
+  right: 0;
+  top: 0;
+`;
 
 const ColumnItemEle = styled.div`
   position: relative;
@@ -53,7 +61,7 @@ const ColumnItemEle = styled.div`
 const ItemButtons = styled.div`
   display: flex;
   justify-content: flex-end;
-  gap: 1rem;
+  gap: 0.5rem;
 `;
 
 const ReadOnlyView = styled.div`
@@ -66,6 +74,8 @@ function ColumnItem({ itemId }) {
 
   const [edittable, setEdittable] = useState(false);
 
+  const [showComments, setShowComments] = useState(false);
+
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -74,6 +84,7 @@ function ColumnItem({ itemId }) {
   const linking = useSelector(getIsLinking);
 
   const readonly = useSelector(getReadOnly);
+  const commentAccess = useSelector(getCommentAccess);
 
   useEffect(() => {
     console.log({ linkingSource, linking });
@@ -215,6 +226,7 @@ function ColumnItem({ itemId }) {
                         </Button>
                       </>
                     )}
+
                     <Button
                       size="small"
                       onClick={viewTree}
@@ -225,10 +237,30 @@ function ColumnItem({ itemId }) {
                   </>
                 )}
               </ItemButtons>
+
+              {commentAccess && (
+                <CommentBtnWrap>
+                  <IconButton
+                    size="small"
+                    onAction={() => setShowComments(true)}
+                  >
+                    <Icon type="talk" />
+                  </IconButton>
+                </CommentBtnWrap>
+              )}
             </ReadOnlyView>
           )}
         </Content>
       </Tile>
+
+      {showComments && (
+        <Comments
+          itemId={itemId}
+          close={() => {
+            setShowComments(false);
+          }}
+        />
+      )}
     </ColumnItemEle>
   );
 }

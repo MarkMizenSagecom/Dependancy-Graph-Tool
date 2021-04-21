@@ -68,7 +68,7 @@ export const getUserDetails = (state) => state?.user?.userDetails;
 export const getSignedIn = (state) => state?.user?.signedIn;
 export const getWriteAccess = (state) => state?.user?.writeAccess;
 export const getReadOnly = (state) => !state?.user?.writeAccess;
-export const getCommentAccess = (state) => !state?.user?.commentAccess;
+export const getCommentAccess = (state) => state?.user?.commentAccess;
 export const getNoSignIn = (state) => state?.user?.noSignIn;
 
 export default userSlice.reducer;
