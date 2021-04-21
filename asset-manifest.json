@@ -7,8 +7,8 @@
     "functions.js": "/Dependancy-Graph-Tool/static/js/functions.0fae28ad.chunk.js",
     "functions.js.map": "/Dependancy-Graph-Tool/static/js/functions.0fae28ad.chunk.js.map",
     "main.css": "/Dependancy-Graph-Tool/static/css/main.a7cc181b.chunk.css",
-    "main.js": "/Dependancy-Graph-Tool/static/js/main.c3abf418.chunk.js",
-    "main.js.map": "/Dependancy-Graph-Tool/static/js/main.c3abf418.chunk.js.map",
+    "main.js": "/Dependancy-Graph-Tool/static/js/main.8f88f2dc.chunk.js",
+    "main.js.map": "/Dependancy-Graph-Tool/static/js/main.8f88f2dc.chunk.js.map",
     "messaging.js": "/Dependancy-Graph-Tool/static/js/messaging.e2a7b5e9.chunk.js",
     "messaging.js.map": "/Dependancy-Graph-Tool/static/js/messaging.e2a7b5e9.chunk.js.map",
     "performance.js": "/Dependancy-Graph-Tool/static/js/performance.e3318132.chunk.js",
@@ -20,18 +20,18 @@
     "storage.js": "/Dependancy-Graph-Tool/static/js/storage.0a4b6a31.chunk.js",
     "storage.js.map": "/Dependancy-Graph-Tool/static/js/storage.0a4b6a31.chunk.js.map",
     "static/css/9.b39b49d3.chunk.css": "/Dependancy-Graph-Tool/static/css/9.b39b49d3.chunk.css",
-    "static/js/9.aed3b96a.chunk.js": "/Dependancy-Graph-Tool/static/js/9.aed3b96a.chunk.js",
-    "static/js/9.aed3b96a.chunk.js.map": "/Dependancy-Graph-Tool/static/js/9.aed3b96a.chunk.js.map",
+    "static/js/9.6cb97413.chunk.js": "/Dependancy-Graph-Tool/static/js/9.6cb97413.chunk.js",
+    "static/js/9.6cb97413.chunk.js.map": "/Dependancy-Graph-Tool/static/js/9.6cb97413.chunk.js.map",
     "index.html": "/Dependancy-Graph-Tool/index.html",
     "static/css/9.b39b49d3.chunk.css.map": "/Dependancy-Graph-Tool/static/css/9.b39b49d3.chunk.css.map",
     "static/css/main.a7cc181b.chunk.css.map": "/Dependancy-Graph-Tool/static/css/main.a7cc181b.chunk.css.map",
-    "static/js/9.aed3b96a.chunk.js.LICENSE.txt": "/Dependancy-Graph-Tool/static/js/9.aed3b96a.chunk.js.LICENSE.txt"
+    "static/js/9.6cb97413.chunk.js.LICENSE.txt": "/Dependancy-Graph-Tool/static/js/9.6cb97413.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.4a954df5.js",
     "static/css/9.b39b49d3.chunk.css",
-    "static/js/9.aed3b96a.chunk.js",
+    "static/js/9.6cb97413.chunk.js",
     "static/css/main.a7cc181b.chunk.css",
-    "static/js/main.c3abf418.chunk.js"
+    "static/js/main.8f88f2dc.chunk.js"
   ]
 }
