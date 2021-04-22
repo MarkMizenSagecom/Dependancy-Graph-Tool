@@ -7,8 +7,8 @@
     "functions.js": "/Dependancy-Graph-Tool/static/js/functions.33db2958.chunk.js",
     "functions.js.map": "/Dependancy-Graph-Tool/static/js/functions.33db2958.chunk.js.map",
     "main.css": "/Dependancy-Graph-Tool/static/css/main.a7cc181b.chunk.css",
-    "main.js": "/Dependancy-Graph-Tool/static/js/main.9f04554c.chunk.js",
-    "main.js.map": "/Dependancy-Graph-Tool/static/js/main.9f04554c.chunk.js.map",
+    "main.js": "/Dependancy-Graph-Tool/static/js/main.51d08d32.chunk.js",
+    "main.js.map": "/Dependancy-Graph-Tool/static/js/main.51d08d32.chunk.js.map",
     "messaging.js": "/Dependancy-Graph-Tool/static/js/messaging.9491db9b.chunk.js",
     "messaging.js.map": "/Dependancy-Graph-Tool/static/js/messaging.9491db9b.chunk.js.map",
     "performance.js": "/Dependancy-Graph-Tool/static/js/performance.5b18dbe6.chunk.js",
@@ -32,6 +32,6 @@
     "static/css/9.b39b49d3.chunk.css",
     "static/js/9.676aae78.chunk.js",
     "static/css/main.a7cc181b.chunk.css",
-    "static/js/main.9f04554c.chunk.js"
+    "static/js/main.51d08d32.chunk.js"
   ]
 }
