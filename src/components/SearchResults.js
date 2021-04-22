@@ -67,7 +67,7 @@ function SearchResults({ searchTerm }) {
                     history.push(`/tree/${item.id}`);
                   }}
                 >
-                  Tree View
+                  View
                 </Button>
               </ItemActions>
             </Item>

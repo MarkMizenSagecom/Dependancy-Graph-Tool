@@ -228,7 +228,7 @@ function ColumnItem({ itemId }) {
                       onClick={viewTree}
                       disabled={!!linking}
                     >
-                      Tree
+                      View
                     </Button>
                   </>
                 )}
