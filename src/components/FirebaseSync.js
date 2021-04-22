@@ -96,6 +96,7 @@ function FirebaseSync() {
           }
         });
 
+        // Reset all connections
         connectionsData.docs.forEach((doc) => {
           const ref = firestore.collection("connections").doc(doc.id);
           batch.delete(ref);
@@ -103,12 +104,20 @@ function FirebaseSync() {
 
         Object.keys(items).forEach((id) => {
           const ref = firestore.collection("items").doc(id);
-          batch.set(ref, items[id]);
+          if (itemsData.docs.indexOf((doc) => doc.id === id) === -1) {
+            batch.set(ref, items[id]);
+          } else {
+            batch.update(ref, items[id]);
+          }
         });
 
         Object.keys(columns).forEach((id) => {
           const ref = firestore.collection("columns").doc(id);
-          batch.set(ref, columns[id]);
+          if (columnsData.docs.indexOf((doc) => doc.id === id) === -1) {
+            batch.set(ref, columns[id]);
+          } else {
+            batch.update(ref, columns[id]);
+          }
         });
 
         connections.forEach((connection, index) => {

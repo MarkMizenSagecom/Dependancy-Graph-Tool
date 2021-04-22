@@ -1,0 +1,814 @@
+{
+  "items": {
+    "item-0069355647228125": {
+      "status": "unknown",
+      "title": "Badges",
+      "description": ""
+    },
+    "item-0463474831753181": {
+      "status": "unknown",
+      "description": "",
+      "messageCount": 2,
+      "title": "Grid system"
+    },
+    "item-0843967888942911": {
+      "status": "unknown",
+      "title": "Buttons: Minor",
+      "description": ""
+    },
+    "item-0947408874185667": {
+      "title": "Spacial Markup",
+      "status": "unknown",
+      "description": ""
+    },
+    "item-1130180074363426": {
+      "status": "unknown",
+      "title": "Buttons: Toggle",
+      "description": ""
+    },
+    "item-1161383488468747": {
+      "status": "unknown",
+      "description": "",
+      "title": "Buttons: Split"
+    },
+    "item-1208306105848063": {
+      "description": "",
+      "status": "unknown",
+      "title": "Textarea"
+    },
+    "item-1228498658827213": {
+      "title": "Label",
+      "status": "unknown",
+      "description": ""
+    },
+    "item-1649999980163706": {
+      "description": "",
+      "title": "Colors",
+      "status": "unknown"
+    },
+    "item-1676055169907509": {
+      "title": "Buttons: Dashed",
+      "status": "unknown",
+      "description": ""
+    },
+    "item-2473778306257815": {
+      "status": "unknown",
+      "title": "Tooltip",
+      "description": ""
+    },
+    "item-3588997979980571": {
+      "status": "unknown",
+      "description": "",
+      "title": "Button"
+    },
+    "item-4373772444791286": {
+      "description": "",
+      "title": "Accordions",
+      "status": "unknown"
+    },
+    "item-4780354183491961": {
+      "description": "",
+      "status": "unknown",
+      "title": "Illustration"
+    },
+    "item-5295302241558843": {
+      "title": "Pills",
+      "status": "unknown",
+      "description": ""
+    },
+    "item-5776553704997477": {
+      "description": "",
+      "status": "unknown",
+      "title": "Icons",
+      "messageCount": 1
+    },
+    "item-6026177205086170": {
+      "status": "unknown",
+      "title": "Icon Button",
+      "description": ""
+    },
+    "item-6211400369148585": {
+      "title": "Text inputs",
+      "status": "unknown",
+      "description": ""
+    },
+    "item-7268714926788843": {
+      "title": "Loader",
+      "description": "",
+      "status": "unknown"
+    },
+    "item-7280685376940893": {
+      "title": "Button bars",
+      "description": "",
+      "status": "unknown"
+    },
+    "item-8515090461252666": {
+      "status": "unknown",
+      "description": "",
+      "title": "Fonts"
+    },
+    "item-8699480600808294": {
+      "status": "unknown",
+      "title": "Accordion",
+      "description": ""
+    },
+    "item-9122604533879275": {
+      "status": "unknown",
+      "title": "Checkboxes",
+      "description": ""
+    },
+    "item-9521159874210066": {
+      "title": "Detailed Icons",
+      "status": "unknown",
+      "description": ""
+    },
+    "item-9211947067242970": {
+      "title": "Action popovers",
+      "description": "",
+      "status": "unknown"
+    },
+    "item-4369908886792044": {
+      "title": "Box Shadow",
+      "description": "This is not a foundation on Frontify, but is worth adding here as it's used my multiple components and patterns.",
+      "status": "unknown"
+    },
+    "item-8850432656181875": {
+      "title": "Dialog",
+      "description": "",
+      "status": "unknown"
+    },
+    "item-4200057396115653": {
+      "title": "Date Input",
+      "description": "",
+      "status": "unknown"
+    },
+    "item-9696484094740348": {
+      "title": "Date ranges",
+      "description": "",
+      "status": "unknown"
+    },
+    "item-0895939902884868": {
+      "title": "Dropdowns, Selects",
+      "description": "",
+      "status": "unknown"
+    },
+    "item-4473803505809990": {
+      "title": "Profile",
+      "description": "",
+      "status": "unknown"
+    },
+    "item-5990444325792141": {
+      "title": "Images",
+      "description": "",
+      "status": "unknown"
+    },
+    "item-8077370508971336": {
+      "title": "Radio Button",
+      "description": "",
+      "status": "unknown"
+    },
+    "item-3973066664928980": {
+      "title": "Search",
+      "description": "",
+      "status": "unknown"
+    },
+    "item-2185881184113859": {
+      "title": "Switches",
+      "description": "",
+      "status": "unknown"
+    },
+    "item-0520106628897706": {
+      "title": "Tables",
+      "description": "",
+      "status": "unknown"
+    },
+    "item-3907650281974087": {
+      "title": "Cards, tiles",
+      "description": "",
+      "status": "unknown"
+    },
+    "item-5312139839745766": {
+      "title": "Tile selects",
+      "description": "",
+      "status": "unknown"
+    },
+    "item-5016912141970964": {
+      "title": "Timeline",
+      "description": "",
+      "status": "unknown"
+    },
+    "item-0904320435499045": {
+      "title": "Release Notes",
+      "description": "",
+      "status": "unknown"
+    },
+    "item-3365557475795085": {
+      "title": "Forms",
+      "description": "",
+      "status": "unknown"
+    },
+    "item-9562698580785308": {
+      "title": "Carousels",
+      "description": "",
+      "status": "unknown"
+    },
+    "item-3588032317774781": {
+      "title": "Dialogs: Full-screen",
+      "description": "",
+      "status": "unknown"
+    },
+    "item-2040822963679234": {
+      "title": "Step flows",
+      "description": "",
+      "status": "unknown"
+    },
+    "item-9507530081218067": {
+      "title": "Flashes",
+      "description": "",
+      "status": "unknown"
+    },
+    "item-0380434401095819": {
+      "title": "Messages",
+      "description": "",
+      "status": "unknown"
+    },
+    "item-0534556199560905": {
+      "title": "Progress trackers",
+      "description": "",
+      "status": "unknown"
+    },
+    "item-1070434066413103": {
+      "title": "File Input",
+      "description": "",
+      "status": "unknown"
+    },
+    "item-2617372397158770": {
+      "title": "Anchor navigation",
+      "description": "",
+      "status": "unknown"
+    },
+    "item-9467580715818999": {
+      "title": "Links",
+      "description": "",
+      "status": "unknown"
+    },
+    "item-4201053561211937": {
+      "title": "Animations",
+      "description": "This is not a foundation on Frontify, but is worth adding here as it's used my multiple components and patterns.",
+      "status": "unknown"
+    },
+    "item-9220483596594376": {
+      "title": "Menu",
+      "description": "",
+      "status": "unknown"
+    },
+    "item-6388432968575644": {
+      "title": "Navigation Bar",
+      "description": "",
+      "status": "unknown"
+    },
+    "item-4991254068997208": {
+      "title": "Sidebars",
+      "description": "",
+      "status": "unknown"
+    },
+    "item-9695417588552274": {
+      "title": "Tabs",
+      "description": "",
+      "status": "unknown"
+    }
+  },
+  "connections": [
+    {
+      "to": "item-1228498658827213",
+      "from": "item-8515090461252666"
+    },
+    {
+      "to": "item-1228498658827213",
+      "from": "item-0947408874185667"
+    },
+    {
+      "to": "item-6211400369148585",
+      "from": "item-5776553704997477"
+    },
+    {
+      "to": "item-1208306105848063",
+      "from": "item-0947408874185667"
+    },
+    {
+      "to": "item-6026177205086170",
+      "from": "item-5776553704997477"
+    },
+    {
+      "to": "item-1208306105848063",
+      "from": "item-8515090461252666"
+    },
+    {
+      "to": "item-1208306105848063",
+      "from": "item-1228498658827213"
+    },
+    {
+      "to": "item-1208306105848063",
+      "from": "item-1649999980163706"
+    },
+    {
+      "to": "item-1208306105848063",
+      "from": "item-5776553704997477"
+    },
+    {
+      "to": "item-5295302241558843",
+      "from": "item-1649999980163706"
+    },
+    {
+      "to": "item-5295302241558843",
+      "from": "item-0947408874185667"
+    },
+    {
+      "to": "item-0069355647228125",
+      "from": "item-1649999980163706"
+    },
+    {
+      "to": "item-1161383488468747",
+      "from": "item-5776553704997477"
+    },
+    {
+      "to": "item-0069355647228125",
+      "from": "item-0947408874185667"
+    },
+    {
+      "to": "item-4373772444791286",
+      "from": "item-5776553704997477"
+    },
+    {
+      "to": "item-9122604533879275",
+      "from": "item-1228498658827213"
+    },
+    {
+      "to": "item-6211400369148585",
+      "from": "item-1228498658827213"
+    },
+    {
+      "to": "item-1228498658827213",
+      "from": "item-1649999980163706"
+    },
+    {
+      "to": "item-3588997979980571",
+      "from": "item-1649999980163706"
+    },
+    {
+      "to": "item-8699480600808294",
+      "from": "item-1649999980163706"
+    },
+    {
+      "to": "item-9122604533879275",
+      "from": "item-5776553704997477"
+    },
+    {
+      "to": "item-7268714926788843",
+      "from": "item-1649999980163706"
+    },
+    {
+      "to": "item-7268714926788843",
+      "from": "item-0947408874185667"
+    },
+    {
+      "to": "item-6211400369148585",
+      "from": "item-8515090461252666"
+    },
+    {
+      "to": "item-6211400369148585",
+      "from": "item-1649999980163706"
+    },
+    {
+      "to": "item-6211400369148585",
+      "from": "item-2473778306257815"
+    },
+    {
+      "to": "item-2473778306257815",
+      "from": "item-1649999980163706"
+    },
+    {
+      "to": "item-2473778306257815",
+      "from": "item-8515090461252666"
+    },
+    {
+      "to": "item-9211947067242970",
+      "from": "item-3588997979980571"
+    },
+    {
+      "to": "item-9211947067242970",
+      "from": "item-5776553704997477"
+    },
+    {
+      "to": "item-9211947067242970",
+      "from": "item-4369908886792044"
+    },
+    {
+      "to": "item-1130180074363426",
+      "from": "item-3588997979980571"
+    },
+    {
+      "to": "item-1161383488468747",
+      "from": "item-3588997979980571"
+    },
+    {
+      "to": "item-0843967888942911",
+      "from": "item-3588997979980571"
+    },
+    {
+      "to": "item-1676055169907509",
+      "from": "item-3588997979980571"
+    },
+    {
+      "to": "item-7280685376940893",
+      "from": "item-3588997979980571"
+    },
+    {
+      "to": "item-6026177205086170",
+      "from": "item-3588997979980571"
+    },
+    {
+      "to": "item-8850432656181875",
+      "from": "item-6026177205086170"
+    },
+    {
+      "to": "item-8850432656181875",
+      "from": "item-3588997979980571"
+    },
+    {
+      "to": "item-8850432656181875",
+      "from": "item-4369908886792044"
+    },
+    {
+      "to": "item-8850432656181875",
+      "from": "item-1649999980163706"
+    },
+    {
+      "to": "item-8850432656181875",
+      "from": "item-0947408874185667"
+    },
+    {
+      "to": "item-8850432656181875",
+      "from": "item-5776553704997477"
+    },
+    {
+      "to": "item-4200057396115653",
+      "from": "item-6211400369148585"
+    },
+    {
+      "to": "item-4200057396115653",
+      "from": "item-5776553704997477"
+    },
+    {
+      "to": "item-4200057396115653",
+      "from": "item-4369908886792044"
+    },
+    {
+      "to": "item-4200057396115653",
+      "from": "item-6026177205086170"
+    },
+    {
+      "to": "item-4200057396115653",
+      "from": "item-2473778306257815"
+    },
+    {
+      "to": "item-9696484094740348",
+      "from": "item-4200057396115653"
+    },
+    {
+      "to": "item-0895939902884868",
+      "from": "item-6211400369148585"
+    },
+    {
+      "to": "item-0895939902884868",
+      "from": "item-1228498658827213"
+    },
+    {
+      "to": "item-0895939902884868",
+      "from": "item-1649999980163706"
+    },
+    {
+      "to": "item-0895939902884868",
+      "from": "item-4369908886792044"
+    },
+    {
+      "to": "item-4473803505809990",
+      "from": "item-0947408874185667"
+    },
+    {
+      "to": "item-4473803505809990",
+      "from": "item-8515090461252666"
+    },
+    {
+      "to": "item-4473803505809990",
+      "from": "item-5990444325792141"
+    },
+    {
+      "to": "item-5295302241558843",
+      "from": "item-5990444325792141"
+    },
+    {
+      "to": "item-8077370508971336",
+      "from": "item-5776553704997477"
+    },
+    {
+      "to": "item-8077370508971336",
+      "from": "item-1228498658827213"
+    },
+    {
+      "to": "item-8077370508971336",
+      "from": "item-0947408874185667"
+    },
+    {
+      "to": "item-8077370508971336",
+      "from": "item-1649999980163706"
+    },
+    {
+      "to": "item-3973066664928980",
+      "from": "item-0895939902884868"
+    },
+    {
+      "to": "item-3973066664928980",
+      "from": "item-5776553704997477"
+    },
+    {
+      "to": "item-3973066664928980",
+      "from": "item-0947408874185667"
+    },
+    {
+      "to": "item-2185881184113859",
+      "from": "item-1228498658827213"
+    },
+    {
+      "to": "item-2185881184113859",
+      "from": "item-1649999980163706"
+    },
+    {
+      "to": "item-2185881184113859",
+      "from": "item-7268714926788843"
+    },
+    {
+      "to": "item-3907650281974087",
+      "from": "item-4369908886792044"
+    },
+    {
+      "to": "item-3907650281974087",
+      "from": "item-0463474831753181"
+    },
+    {
+      "to": "item-3907650281974087",
+      "from": "item-1649999980163706"
+    },
+    {
+      "to": "item-3907650281974087",
+      "from": "item-0947408874185667"
+    },
+    {
+      "to": "item-5312139839745766",
+      "from": "item-3907650281974087"
+    },
+    {
+      "to": "item-9562698580785308",
+      "from": "item-8850432656181875"
+    },
+    {
+      "to": "item-9562698580785308",
+      "from": "item-3588997979980571"
+    },
+    {
+      "to": "item-9562698580785308",
+      "from": "item-4369908886792044"
+    },
+    {
+      "to": "item-9562698580785308",
+      "from": "item-0947408874185667"
+    },
+    {
+      "to": "item-3588032317774781",
+      "from": "item-8850432656181875"
+    },
+    {
+      "to": "item-2040822963679234",
+      "from": "item-3588032317774781"
+    },
+    {
+      "to": "item-9507530081218067",
+      "from": "item-6026177205086170"
+    },
+    {
+      "to": "item-9507530081218067",
+      "from": "item-5776553704997477"
+    },
+    {
+      "to": "item-9507530081218067",
+      "from": "item-4369908886792044"
+    },
+    {
+      "to": "item-0380434401095819",
+      "from": "item-6026177205086170"
+    },
+    {
+      "to": "item-0380434401095819",
+      "from": "item-5776553704997477"
+    },
+    {
+      "to": "item-0380434401095819",
+      "from": "item-4369908886792044"
+    },
+    {
+      "to": "item-0380434401095819",
+      "from": "item-1649999980163706"
+    },
+    {
+      "to": "item-9507530081218067",
+      "from": "item-1649999980163706"
+    },
+    {
+      "to": "item-0380434401095819",
+      "from": "item-8515090461252666"
+    },
+    {
+      "to": "item-0534556199560905",
+      "from": "item-1228498658827213"
+    },
+    {
+      "to": "item-1070434066413103",
+      "from": "item-0534556199560905"
+    },
+    {
+      "to": "item-1070434066413103",
+      "from": "item-6211400369148585"
+    },
+    {
+      "to": "item-1070434066413103",
+      "from": "item-1228498658827213"
+    },
+    {
+      "to": "item-1070434066413103",
+      "from": "item-8699480600808294"
+    },
+    {
+      "to": "item-1070434066413103",
+      "from": "item-7268714926788843"
+    },
+    {
+      "to": "item-1070434066413103",
+      "from": "item-3588997979980571"
+    },
+    {
+      "to": "item-9467580715818999",
+      "from": "item-1649999980163706"
+    },
+    {
+      "to": "item-9467580715818999",
+      "from": "item-8515090461252666"
+    },
+    {
+      "to": "item-9220483596594376",
+      "from": "item-8515090461252666"
+    },
+    {
+      "to": "item-9220483596594376",
+      "from": "item-5776553704997477"
+    },
+    {
+      "to": "item-9220483596594376",
+      "from": "item-4369908886792044"
+    },
+    {
+      "to": "item-9220483596594376",
+      "from": "item-4201053561211937"
+    },
+    {
+      "to": "item-9220483596594376",
+      "from": "item-6388432968575644"
+    },
+    {
+      "to": "item-6388432968575644",
+      "from": "item-1649999980163706"
+    },
+    {
+      "to": "item-6388432968575644",
+      "from": "item-0463474831753181"
+    },
+    {
+      "to": "item-4991254068997208",
+      "from": "item-8850432656181875"
+    },
+    {
+      "to": "item-4991254068997208",
+      "from": "item-0463474831753181"
+    },
+    {
+      "to": "item-4991254068997208",
+      "from": "item-4369908886792044"
+    },
+    {
+      "to": "item-4991254068997208",
+      "from": "item-3588997979980571"
+    },
+    {
+      "to": "item-9695417588552274",
+      "from": "item-5776553704997477"
+    },
+    {
+      "to": "item-9695417588552274",
+      "from": "item-4369908886792044"
+    },
+    {
+      "to": "item-9695417588552274",
+      "from": "item-1649999980163706"
+    },
+    {
+      "to": "item-9695417588552274",
+      "from": "item-0947408874185667"
+    }
+  ],
+  "columns": {
+    "column--0916868167026921": {
+      "title": "Foundations",
+      "items": [
+        "item-4201053561211937",
+        "item-5990444325792141",
+        "item-4369908886792044",
+        "item-0463474831753181",
+        "item-5776553704997477",
+        "item-9521159874210066",
+        "item-4780354183491961",
+        "item-1649999980163706",
+        "item-0947408874185667",
+        "item-8515090461252666"
+      ]
+    },
+    "column--2893621031052356": {
+      "items": [
+        "item-6388432968575644",
+        "item-9467580715818999",
+        "item-3907650281974087",
+        "item-4473803505809990",
+        "item-5295302241558843",
+        "item-0069355647228125",
+        "item-7268714926788843",
+        "item-8699480600808294",
+        "item-3588997979980571",
+        "item-2473778306257815",
+        "item-1228498658827213"
+      ],
+      "title": "Components I"
+    },
+    "column--3373795815203456": {
+      "title": "Components II",
+      "items": [
+        "item-9220483596594376",
+        "item-0534556199560905",
+        "item-5312139839745766",
+        "item-2185881184113859",
+        "item-8077370508971336",
+        "item-9211947067242970",
+        "item-1208306105848063",
+        "item-6211400369148585",
+        "item-9122604533879275",
+        "item-1130180074363426",
+        "item-1161383488468747",
+        "item-0843967888942911",
+        "item-1676055169907509",
+        "item-7280685376940893",
+        "item-6026177205086170",
+        "item-4373772444791286"
+      ]
+    },
+    "column--3963530548391490": {
+      "items": [
+        "item-1070434066413103",
+        "item-0380434401095819",
+        "item-9507530081218067",
+        "item-0895939902884868",
+        "item-4200057396115653",
+        "item-8850432656181875"
+      ],
+      "title": "Components III"
+    },
+    "column--6154041739382690": {
+      "title": "Patterns",
+      "items": [
+        "item-9695417588552274",
+        "item-4991254068997208",
+        "item-2617372397158770",
+        "item-3588032317774781",
+        "item-9562698580785308",
+        "item-3365557475795085",
+        "item-0520106628897706",
+        "item-3973066664928980",
+        "item-9696484094740348"
+      ]
+    },
+    "column--7864041517024023": {
+      "items": [
+        "item-2040822963679234",
+        "item-0904320435499045",
+        "item-5016912141970964"
+      ],
+      "title": "Templates"
+    }
+  }
+}

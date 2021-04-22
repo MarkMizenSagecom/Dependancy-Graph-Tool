@@ -86,10 +86,6 @@ function ColumnItem({ itemId }) {
   const readonly = useSelector(getReadOnly);
   const commentAccess = useSelector(getCommentAccess);
 
-  useEffect(() => {
-    console.log({ linkingSource, linking });
-  }, [linkingSource, linking]);
-
   const { addRef, removeRef } = useContext(Refs);
 
   const item = useMemo(() => {

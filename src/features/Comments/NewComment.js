@@ -7,7 +7,8 @@ import { useState } from "react";
 const Actions = styled.div`
   margin-top: 1rem;
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
+  flex-direction: row-reverse;
 `;
 
 const Form = styled.form`
@@ -17,8 +18,13 @@ const Form = styled.form`
 
 function NewComment({ onSubmit, onCancel }) {
   const [message, setMessage] = useState("");
+  const handleSubmit = (ev) => {
+    ev.preventDefault();
+    onSubmit(message.trim());
+    setMessage("");
+  };
   return (
-    <Form onSubmit={() => onSubmit(message)}>
+    <Form onSubmit={handleSubmit}>
       <Textarea
         label="Add a comment"
         required
@@ -27,11 +33,11 @@ function NewComment({ onSubmit, onCancel }) {
         onChange={(ev) => setMessage(ev.target.value)}
       />
       <Actions>
-        <Button buttonType="secondary" type="reset" onClick={onCancel}>
-          Cancel
-        </Button>
         <Button buttonType="primary" ml={2} type="submit">
           Send
+        </Button>
+        <Button buttonType="secondary" type="reset" onClick={onCancel}>
+          Cancel
         </Button>
       </Actions>
     </Form>
