@@ -5,12 +5,19 @@ const genId = (prefix = "item") =>
     .toString()
     .substr(2, 8)}${Math.random().toString().substr(2, 8)}`;
 
-const genItem = (partial = {}) => ({
-  title: "Name",
-  description: "",
-  status: "unknown",
-  ...partial,
-});
+const genItem = (partial = {}) => {
+  const now = new Date();
+  return {
+    title: "Name",
+    description: "",
+    status: "unknown",
+    updated: {
+      seconds: Math.floor(now / 1000),
+      milliseconds: now % 1000,
+    },
+    ...partial,
+  };
+};
 
 export const dependanciesSlice = createSlice({
   name: "dependancies",
@@ -25,7 +32,7 @@ export const dependanciesSlice = createSlice({
     addItem: (state, action) => {
       const { column } = action.payload;
       let id = genId();
-      // Make sure there are no id conflicts. 
+      // Make sure there are no id conflicts.
       // Should be very low, but non-zero, chance
       while (!!state.items[id]) {
         id = genId();

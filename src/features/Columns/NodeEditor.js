@@ -53,11 +53,18 @@ function NodeEditor({ itemId, item, doneEditing }) {
   });
 
   const save = useCallback(() => {
+    const now = new Date();
     dispatch({
       type: updateItem.type,
       payload: {
         id: itemId,
-        update: formData,
+        update: {
+          ...formData,
+          updated: {
+            seconds: Math.floor(now / 1000),
+            milliseconds: now % 1000,
+          },
+        },
       },
     });
     doneEditing();
@@ -80,7 +87,6 @@ function NodeEditor({ itemId, item, doneEditing }) {
           size="small"
           value={formData.title}
           onChange={(ev) => {
-            console.log("here!");
             formDataDispatch({
               type: "UPDATE",
               payload: {
