@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 import useViewport from "../../hooks/useViewport";
 
+import TreeActions from "./TreeActions";
 import TreeContents from "./TreeContents";
 import { TreeContextProvider } from "./TreeContext";
 
@@ -48,6 +49,7 @@ function TreeView() {
             <TreeContents />
           </DraggableGroup>
         </TreeViewSVG>
+        <TreeActions/>
       </TreeContextProvider>
     </TreeViewWrap>
   );

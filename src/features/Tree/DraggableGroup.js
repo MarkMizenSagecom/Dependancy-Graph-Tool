@@ -1,9 +1,40 @@
 import { useEffect, useContext, useMemo, useReducer } from "react";
 import { TreeContext } from "./TreeContext";
 import useViewport from "../../hooks/useViewport";
+import { useParams } from "react-router";
 
 function reducer(state, { type, payload }) {
   switch (type) {
+    case "RESET":
+      return {
+        scale: 1,
+        transform: {
+          x: 0,
+          y: 0,
+        },
+        start: {
+          x: 0,
+          y: 0,
+        },
+        prev: {
+          x: 0,
+          y: 0,
+        },
+        mouseDown: false,
+      };
+    case "SCALE":
+      return {
+        ...state,
+        scale: payload.scale,
+        transform: {
+          x: 0,
+          y: 0,
+        },
+        prev: {
+          x: 0,
+          y: 0,
+        },
+      };
     case "MOUSE_DOWN":
       return {
         ...state,
@@ -39,7 +70,9 @@ function reducer(state, { type, payload }) {
 }
 
 function DraggableGroup({ children }) {
+  const { itemId } = useParams();
   const [dragging, dispatch] = useReducer(reducer, {
+    scale: 1,
     transform: {
       x: 0,
       y: 0,
@@ -55,18 +88,31 @@ function DraggableGroup({ children }) {
     mouseDown: false,
   });
 
-  const { nodes, active } = useContext(TreeContext);
+  const { nodes, active, zoom } = useContext(TreeContext);
+
+  useEffect(() => {
+    requestAnimationFrame(() => {
+      dispatch({ type: "RESET" });
+    });
+  }, [itemId, dispatch]);
+
+  useEffect(() => {
+    requestAnimationFrame(() => {
+      dispatch({ type: "SCALE", payload: { scale: zoom / 100 } });
+    });
+  }, [zoom, dispatch]);
 
   const viewport = useViewport();
 
   const outerTransform = useMemo(() => {
-    const x = viewport.width / 2 - nodes[active].position.x - 150;
-    const y = viewport.height / 2 - nodes[active].position.y - 40;
-    return {
-      x,
-      y,
-    };
-  }, [viewport, nodes, active]);
+    const x =
+      viewport.width / 2 -
+      (nodes[active].position.x) * dragging.scale -
+      160 - 150;
+    const y =
+      viewport.height / 2 - (nodes[active].position.y - 40) * dragging.scale;
+    return `translate(${x} ${y})`;
+  }, [viewport, nodes, active, dragging.scale]);
 
   useEffect(() => {
     const eventHandler = () => {
@@ -103,12 +149,9 @@ function DraggableGroup({ children }) {
           dispatch({ type: "MOUSE_UP" });
         }}
       ></rect>
-      <g
-        transform={`translate(${outerTransform.x} ${outerTransform.y})`}
-        style={{ userSelect: "none" }}
-      >
+      <g transform={outerTransform} style={{ userSelect: "none" }}>
         <g
-          transform={`translate(${dragging.transform.x} ${dragging.transform.y})`}
+          transform={`translate(${dragging.transform.x} ${dragging.transform.y}) scale(${dragging.scale})`}
         >
           {children}
         </g>

@@ -5,6 +5,8 @@ import {
   getColumns,
   getConnections,
 } from "../../redux/dependancies/dependanciesSlice";
+import { useState } from "react";
+import { useCallback } from "react";
 
 const FRAME_WIDTH = 2000;
 // const FRAME_HEIGHT = 2000;
@@ -15,6 +17,17 @@ export function TreeContextProvider({ children }) {
   const { itemId } = useParams();
   const connections = useSelector(getConnections);
   const columns = useSelector(getColumns);
+  const [zoom, _setZoom] = useState(100);
+
+  const setZoom = useCallback(
+    (amount) => {
+      if (isNaN(amount)) {
+        return;
+      }
+      _setZoom(Math.max(Math.min(amount, 200), 30));
+    },
+    [_setZoom]
+  );
 
   let nodesToShow = [
     {
@@ -70,8 +83,8 @@ export function TreeContextProvider({ children }) {
       descendants: connections.filter(({ from }) => from === node.id).length,
       ancesstors: connections.filter(({ to }) => to === node.id).length,
       position: {
-        x: FRAME_WIDTH / 2 + (rowLength[node.row] / 2 - node.rowCount) * 500,
-        y: node.row * 300,
+        x: FRAME_WIDTH / 2 + (rowLength[node.row] / 2 - node.rowCount) * 400,
+        y: node.row * 180,
       },
     };
   });
@@ -79,7 +92,9 @@ export function TreeContextProvider({ children }) {
   const active = nodes.findIndex((node) => node.id === itemId);
 
   return (
-    <TreeContext.Provider value={{ nodes, maxColumns: columnsLength, active }}>
+    <TreeContext.Provider
+      value={{ nodes, maxColumns: columnsLength, active, zoom, setZoom }}
+    >
       {children}
     </TreeContext.Provider>
   );
