@@ -7,6 +7,8 @@ import { useSelector } from "react-redux";
 import { getConnections } from "../../redux/dependancies/dependanciesSlice";
 import styled from "styled-components";
 import { getScrollLeft } from "../../redux/connections/connectionsSlice";
+import { getShowAllArrows } from "../../redux/options/optionsSlice";
+import { getLinkingSource } from "../../redux/linking/linkingSlice";
 
 const ConnectionsWrap = styled.div`
   pointer-events: none;
@@ -27,6 +29,9 @@ function Connections() {
   const connections = useSelector(getConnections);
   const scrollLeft = useSelector(getScrollLeft);
 
+  const showAllArrows = useSelector(getShowAllArrows);
+  const linkingSource = useSelector(getLinkingSource);
+
   const refsContext = useContext(Refs);
 
   const [svgProps, setSvgProps] = useState({
@@ -42,7 +47,16 @@ function Connections() {
   const lines = useMemo(() => {
     const { scrollTop } = document.documentElement;
 
+    if (!connections) {
+      return null;
+    }
+
+    const filterMethod = showAllArrows
+      ? () => true
+      : ({ from, to }) => from === linkingSource || to === linkingSource;
+
     return connections
+      ?.filter(filterMethod)
       ?.map(({ from, to }) => {
         try {
           const fromRef = refsContext.refs[from];
@@ -106,7 +120,14 @@ function Connections() {
           </g>
         );
       });
-  }, [viewport, scrollLeft, connections, refsContext]);
+  }, [
+    viewport,
+    scrollLeft,
+    connections,
+    refsContext,
+    linkingSource,
+    showAllArrows,
+  ]);
 
   useEffect(() => {
     if (!viewport || !ref?.current) {

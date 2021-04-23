@@ -1,6 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const WRITE_ACCESS = ["hFgfQcppuQXWOjHC72Cs7XK0uQ52"];
+const WRITE_ACCESS = [
+  "hFgfQcppuQXWOjHC72Cs7XK0uQ52", // Mark
+  "6ml6AfPeOjSEVWnFidImp8Bppnd2", // Alexa
+  "3PFfEGHNeZYk89POk991YEQKJXj2", // Ingrid
+];
 
 export const userSlice = createSlice({
   name: "user",

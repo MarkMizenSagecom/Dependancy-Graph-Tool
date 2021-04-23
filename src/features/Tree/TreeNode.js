@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import styled from "styled-components";
+import statuses from "../../data/statuses";
 import { getShowOtherRelations } from "../../redux/options/optionsSlice";
 
 const NodeTitle = styled.text`
@@ -7,10 +8,10 @@ const NodeTitle = styled.text`
   pointer-events: none;
 `;
 
-const NodeDescription = styled.text`
-  font: normal 14px sans-serif;
-  pointer-events: none;
-`;
+// const NodeDescription = styled.text`
+//   font: normal 14px sans-serif;
+//   pointer-events: none;
+// `;
 
 const NodeColumn = styled.text`
   font: normal 14px sans-serif;
@@ -37,6 +38,16 @@ const NodeBox = styled.rect`
         cursor: pointer;
       }
     `}}
+`;
+
+const StatusBox = styled.rect`
+  stroke-width: 0;
+  ${(props) => {
+    if (statuses[props.status]) {
+      return `fill: ${statuses[props.status].color};`;
+    }
+    return `fill: transparent;`;
+  }}
 `;
 
 const OtherNodeLabel = ({ x, y, parentX, parentY, text }) => {
@@ -99,27 +110,34 @@ function TreeNode({
           width="300"
         />
 
+        <StatusBox
+          status={itemDetails?.status}
+          x={position.x.toString()}
+          y={position.y.toString()}
+          height="80"
+          width="8"
+        />
+
         <NodeTitle
-          x={(position.x + 10).toString()}
+          x={(position.x + 24).toString()}
           y={(position.y + 30).toString()}
         >
           {itemDetails?.title}
         </NodeTitle>
 
         <NodeColumn
-          x={(position.x + 10).toString()}
+          x={(position.x + 24).toString()}
           y={(position.y + 60).toString()}
         >
           {col}
         </NodeColumn>
 
-        <NodeDescription
+        {/* <NodeDescription
           x={(position.x + 10).toString()}
           y={(position.y + 60).toString()}
         >
-          {col}
           {itemDetails?.description}
-        </NodeDescription>
+        </NodeDescription> */}
       </g>
 
       {showOtherRelations && (

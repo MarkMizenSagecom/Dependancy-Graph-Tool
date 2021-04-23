@@ -8,6 +8,8 @@ import { getReadOnly } from "../redux/user/userSlice";
 
 import UserDetails from "./UserDetails";
 import ComponentSearch from "./ComponentSearch";
+import ShowHideAllArrows from "./ShowHideAllArrows";
+import ShowHideOtherRelations from "./ShowHideOtherRelations";
 import SaveButton from "./SaveButton";
 import Typography from "carbon-react/lib/components/typography";
 
@@ -38,8 +40,9 @@ function AppSidebar() {
   const readonly = useSelector(getReadOnly);
   return (
     <SidebarWrap>
-
-      <Typography ml={4} mt={3} variant="h1">Dependancy Graph</Typography>
+      <Typography ml={4} mt={3} variant="h1">
+        Dependancy Graph
+      </Typography>
 
       <UserDetails />
       <Hr />
@@ -50,14 +53,20 @@ function AppSidebar() {
 
       <SidebarActions>
         <Route path="/tree/">
+          <ShowHideOtherRelations />
+
           <Button fullWidth onClick={() => history.push("/")}>
             Columns View
           </Button>
+
           <Button fullWidth onClick={() => history.goBack()}>
             Back
           </Button>
         </Route>
+
         <Route exact path="/">
+          <ShowHideAllArrows />
+
           {!readonly && (
             <Button
               onClick={() => {
