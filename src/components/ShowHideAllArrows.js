@@ -14,7 +14,7 @@ function ShowHideAllArrows() {
   return (
     <Wrap>
       <Typography fontWeight="600" mb={1}>
-        Show Arrows:
+        Show all arrows:
       </Typography>
       <div>
         <ButtonToggle

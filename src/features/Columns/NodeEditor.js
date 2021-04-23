@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useEffect, useCallback, useState, useReducer } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
@@ -30,24 +30,42 @@ const Circle = styled.span`
   ${(props) => props.color && `background: ${props.color};`}
 `;
 
+const formDataReducer = (state, action) => {
+  switch (action.type) {
+    case "SET":
+      return action.payload;
+    case "UPDATE":
+      const { key, val } = action.payload;
+      return { ...state, [key]: val };
+    default:
+      return state;
+  }
+};
+
 function NodeEditor({ itemId, item, doneEditing }) {
   const dispatch = useDispatch();
   const [confirmDelete, setConfirmDelete] = useState(false);
 
-  const update = useCallback(
-    (key, val) => {
-      dispatch({
-        type: updateItem.type,
-        payload: {
-          id: itemId,
-          update: {
-            [key]: val,
-          },
-        },
-      });
-    },
-    [itemId, dispatch]
-  );
+  const [formData, formDataDispatch] = useReducer(formDataReducer, {
+    title: "",
+    status: "",
+    description: "",
+  });
+
+  const save = useCallback(() => {
+    dispatch({
+      type: updateItem.type,
+      payload: {
+        id: itemId,
+        update: formData,
+      },
+    });
+    doneEditing();
+  }, [itemId, dispatch, formData, doneEditing]);
+
+  useEffect(() => {
+    formDataDispatch({ type: "SET", payload: item });
+  }, [item]);
 
   return (
     <form
@@ -60,9 +78,16 @@ function NodeEditor({ itemId, item, doneEditing }) {
           labelInline
           label="Name"
           size="small"
-          value={item.title}
+          value={formData.title}
           onChange={(ev) => {
-            update("title", ev.target.value);
+            console.log("here!");
+            formDataDispatch({
+              type: "UPDATE",
+              payload: {
+                key: "title",
+                val: ev.target.value,
+              },
+            });
           }}
           required
         />
@@ -73,9 +98,15 @@ function NodeEditor({ itemId, item, doneEditing }) {
           name="simple"
           size="small"
           label="Status"
-          value={item.status}
+          value={formData.status}
           onChange={(ev) => {
-            update("status", ev.target.value);
+            formDataDispatch({
+              type: "UPDATE",
+              payload: {
+                key: "status",
+                val: ev.target.value,
+              },
+            });
           }}
         >
           {Object.keys(statuses).map((status) => {
@@ -92,9 +123,17 @@ function NodeEditor({ itemId, item, doneEditing }) {
         <Textbox
           labelInline
           label="Description"
-          value={item.description}
+          value={formData.description}
           size="small"
-          onChange={(ev) => update("description", ev.target.value)}
+          onChange={(ev) => {
+            formDataDispatch({
+              type: "UPDATE",
+              payload: {
+                key: "description",
+                val: ev.target.value,
+              },
+            });
+          }}
         />
       </Typography>
       <ItemButtons>
@@ -102,12 +141,7 @@ function NodeEditor({ itemId, item, doneEditing }) {
           Delete
         </Button>
 
-        <Button
-          buttonType="primary"
-          size="small"
-          onClick={doneEditing}
-          type="submit"
-        >
+        <Button buttonType="primary" size="small" onClick={save} type="submit">
           Done
         </Button>
       </ItemButtons>
